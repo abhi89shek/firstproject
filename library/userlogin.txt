@@ -1,0 +1,74 @@
+        Button signin;
+	EditText username,password;
+	public String uid=username.getText().toString();
+        public String pass=password.getText().toString();
+      
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_userlogin);
+                TabHost th= (TabHost) findViewById (R.id.tabhost);
+                th.setup();
+                TabSpec specs=th.newTabSpec("t1");
+                specs.setContent(R.id.tab1);
+                
+                specs.setIndicator("Existing User");
+                th.addTab(specs);
+              
+                specs=th.newTabSpec("t2");
+                specs.setContent(R.id.tab2);
+                specs.setIndicator("New user");
+                th.addTab(specs);
+                
+                specs=th.newTabSpec("t3");
+                specs.setContent(R.id.tab3);
+                specs.setIndicator("Admin");
+                th.addTab(specs);
+
+username=(EditText) findViewById (R.id.editText1);
+        password=(EditText) findViewById  (R.id.editText2);
+        signin=(Button) findViewById (R.id.button1);
+        
+      
+                  // ON CLICK OF SIGIN first it checks if the fields are empty
+                  // then it creates an array list and adds the user id and password 
+        //in the try block we are creating a default http client and sending both the value pairs to our server 
+            
+            signin.setOnClickListener(new OnClickListener(){
+					public void onClick(View v1) {
+					// TODO Auto-generated method stub
+					if(uid=="null" || pass=="null")
+					{
+						System.out.println("INVALID USERNAME/PASSWORD");
+					}
+					else 
+					{
+						ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+						nameValuePairs.add(new BasicNameValuePair("id", uid));
+						nameValuePairs.add(new BasicNameValuePair("p1", pass)); 
+
+						try {
+						        HttpClient httpClient = new DefaultHttpClient();
+						        HttpPost httpPost = new HttpPost("localhost:8080");//the webserver address goes in here
+						        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+						        HttpResponse response = httpClient.execute(httpPost);
+						        HttpEntity entity = response.getEntity();
+						        InputStream is = entity.getContent();               
+						    }catch (Exception e) {
+						        // TODO: handle exception
+						                	    }
+					}
+						
+				}
+        		
+                                 	            }
+            );
+}
+
+ @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_userlogin, menu);
+        return true;
+    }
+}
