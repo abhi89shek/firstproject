@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lib4"
+    tools:ignore="HardcodedText" >
+
+    <TextView
+        android:id="@+id/tva1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/butta1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tva1"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="43dp"
+        android:text=""
+        android:background="@drawable/booksadmin"></Button>
+
+    <TextView
+        android:id="@+id/tva2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/butta1"
+        android:layout_below="@+id/butta1"
+        android:text="Manage Books"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <Button
+        android:id="@+id/butta2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tva2"
+        android:layout_centerVertical="true"
+        android:text=""
+        android:background="@drawable/reports" ></Button>
+
+    <TextView
+        android:id="@+id/tva31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/butta2"
+        android:layout_below="@+id/butta2"
+        android:text="Daily Reports"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <Button
+        android:id="@+id/butta3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tva31"
+        android:layout_below="@+id/tva31"
+        android:layout_marginTop="36dp"
+        android:text=""
+        android:background="@drawable/rate" ></Button>
+
+    <TextView
+        android:id="@+id/tva3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/butta3"
+        android:layout_below="@+id/butta3"
+        android:text="Reviews and Rating"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <Button
+        android:id="@+id/button1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Log Off"
+        android:textColor="#FFFFFF" />
+      
+</RelativeLayout>

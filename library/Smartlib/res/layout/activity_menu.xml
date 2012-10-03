@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lib4"
+    tools:ignore="HardcodedText,ExtraText" >
+
+    <Button
+        android:id="@+id/butt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/srch"
+         />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/butt1"
+        android:layout_below="@+id/butt1"
+        android:text="Search"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+         />
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="WELCOME,"
+        android:textColor="#FFFFFF"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv2"
+        android:layout_alignBottom="@+id/tv2"
+        android:layout_toRightOf="@+id/tv2"
+        android:text=""
+        android:textColor="#FFFFFF"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/butt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="46dp"
+        android:background="@drawable/sroom" />
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv1"
+        android:layout_alignBottom="@+id/tv1"
+        android:layout_alignLeft="@+id/butt2"
+        android:text="Reserve study room"
+         />
+
+    <Button
+        android:id="@+id/butt3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv1"
+        android:layout_below="@+id/tv1"
+        android:layout_marginTop="36dp"
+        android:text=""
+        android:background="@drawable/history" 
+         />
+
+    <TextView
+        android:id="@+id/tv5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/butt3"
+        android:layout_below="@+id/butt3"
+        android:text="View book history"
+        android:textAppearance="?android:attr/textAppearanceSmall" 
+        />
+
+    <Button
+        android:id="@+id/butt4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv5"
+        android:layout_alignLeft="@+id/tv4"
+        android:text=""
+        android:background="@drawable/ebook"/>
+
+    <TextView
+        android:id="@+id/tv6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv5"
+        android:layout_alignBottom="@+id/tv5"
+        android:layout_alignLeft="@+id/butt4"
+        android:text="E-Books"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+
+
+</RelativeLayout>
