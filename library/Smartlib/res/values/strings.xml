@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="app_name">Smartlib</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_userlogin">Userlogin</string>
+
+    <color name="white">#FFFFFF</color>
+
+    <drawable name="white">#ffffff</drawable>
+
+    <string name="title_activity_menu">MainActivity</string>
+    <string name="title_activity_adminlogin">MainActivity</string>
+
+</resources>
