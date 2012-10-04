@@ -29,13 +29,16 @@ public class MenuActivity extends Activity {
             searchbutton.setOnClickListener(new OnClickListener(){
 	        	public void onClick(View v1) {
 	        		
-	        		//Intent intent = new Intent(v1.getContext(),SearchBookActivity.class);
+	        		Intent intent = new Intent(v1.getContext(),SearchbookActivity.class);
 	        		startActivityForResult(intent,0);
 	        		
 	        		
 	        		
 	        	}
         
+    }
+            
+            );
     }
 
     @Override

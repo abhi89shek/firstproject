@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lib4" >
+
+    <EditText
+        android:id="@+id/et1"
+        android:layout_width="275dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Enter your choice"
+        android:inputType="text"
+        tools:ignore="HardcodedText" >
+       
+    </EditText>
+
+    <Button
+        android:id="@+id/butts1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/searchic" />
+
+<RadioGroup
+    android:id="@+id/radiobuttg"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_below="@+id/butts1" >
+
+    <RadioButton
+        android:id="@+id/radiobutts1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:checked="true"
+        android:text="Search By Book Name"
+        android:textColor="#FFFFFF"        
+        tools:ignore="HardcodedText" />
+
+    <RadioButton
+        android:id="@+id/radiobutts2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Seach by ISBN"
+        android:textColor="#FFFFFF" 
+        tools:ignore="HardcodedText" />
+
+    <RadioButton
+        android:id="@+id/radiobutts3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/radiobutts2"
+        android:layout_marginTop="40dp"
+        android:text="Search by book author"
+        android:textColor="#FFFFFF" 
+        tools:ignore="ObsoleteLayoutParam,HardcodedText" />
+
+</RadioGroup>
+
+</RelativeLayout>
+    
+
+</RelativeLayout>
