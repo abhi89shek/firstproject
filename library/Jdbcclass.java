@@ -49,7 +49,7 @@ public class Jdbcclass {
 			try {
 				if(Integer.parseInt(args[0]) == 1)
 				{
-				 fstream = new FileInputStream("EMPLOYEE.txt");
+				 fstream = new FileInputStream("/home/v/vx/vxm4668/EMPLOYEE.txt");
 				  // Get the object of DataInputStream
 				   in = new DataInputStream(fstream);
 				   br = new BufferedReader(new InputStreamReader(in));
@@ -73,7 +73,7 @@ public class Jdbcclass {
 				}
 				if(Integer.parseInt(args[0]) == 2)
 				{
-				FileInputStream fstream1 = new FileInputStream("PROJECT.txt");
+				FileInputStream fstream1 = new FileInputStream("/home/v/vx/vxm4668/PROJECT.txt");
 				  // Get the object of DataInputStream
 				  DataInputStream in1 = new DataInputStream(fstream1);
 				  BufferedReader br1 = new BufferedReader(new InputStreamReader(in1));
@@ -97,7 +97,7 @@ public class Jdbcclass {
 				}
 				if(Integer.parseInt(args[0]) == 3)
 				{
-				   fstream = new FileInputStream("WORKS_ON.txt");
+				   fstream = new FileInputStream("/home/v/vx/vxm4668/WORKS_ON.txt");
 				  // Get the object of DataInputStream
 				   in = new DataInputStream(fstream);
 				   br = new BufferedReader(new InputStreamReader(in));
@@ -121,7 +121,7 @@ public class Jdbcclass {
 				}
 				if(Integer.parseInt(args[0]) == 4)
 				{
-				   fstream = new FileInputStream("DEPARTMENT.txt");
+				   fstream = new FileInputStream("/home/v/vx/vxm4668/DEPARTMENT.txt");
 				  // Get the object of DataInputStream
 				   in = new DataInputStream(fstream);
 				   br = new BufferedReader(new InputStreamReader(in));
@@ -145,7 +145,7 @@ public class Jdbcclass {
 				}
 				if(Integer.parseInt(args[0]) == 5)
 				{
-				   fstream = new FileInputStream("DEPT_LOCATIONS.txt");
+				   fstream = new FileInputStream("/home/v/vx/vxm4668/DEPT_LOCATIONS.txt");
 				  // Get the object of DataInputStream
 				   in = new DataInputStream(fstream);
 				   br = new BufferedReader(new InputStreamReader(in));
