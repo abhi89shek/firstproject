@@ -2,6 +2,8 @@ package com.vkr.smartlib;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -24,13 +26,21 @@ import org.apache.http.message.BasicNameValuePair;
 
 public class Userlogin extends Activity {
 	
-	    Button signin,signinadmin;
-		EditText username,password,adminId,adminpass;
+	    Button signin,signinadmin, signup;
+		EditText username,password,adminId,adminpass, fname , email , phone, address, npassword,con_password; 
 		String uid = null;
 		String pass = null;
 		String tno = null;
 		String aid = null;
 		String apass = null;
+		String fnam = null;
+		String e_mail = null;
+		String phone_num = null;
+		String npass = null;
+		String cpass = null;
+		String add = null;
+		
+		
 	   
 	      
 
@@ -74,7 +84,7 @@ public class Userlogin extends Activity {
 							tno = "1";
 						if(uid.equals("") || pass.equals(""))
 						{
-							System.out.println("You have not provided credentials");
+							Toast.makeText(getBaseContext(), "oops!you have not provided credentials", 10).show();
 						}
 						else 
 						{
@@ -89,6 +99,12 @@ public class Userlogin extends Activity {
 							  try {
 								StringBuffer str = netclass.get();
 								String str1 = str.toString();
+								if(str1.equals("N"))
+								{
+									Toast.makeText(getBaseContext(), "Invalid username/password", 1000000000).show();
+								}
+								else
+								{
 								System.out.println(str);
 								Intent intent = new Intent(v1.getContext(), MenuActivity.class);
 								Bundle b = new Bundle();
@@ -98,6 +114,7 @@ public class Userlogin extends Activity {
 								//intent.putExtra("message", str1);
 								//intent.putExtra("sesionid", uid);
 								startActivityForResult(intent,0);
+								}
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -107,7 +124,7 @@ public class Userlogin extends Activity {
 							}catch (Exception e){
 								e.printStackTrace();
 							}
-							
+							  
                              
 							
 						}
@@ -132,7 +149,7 @@ public class Userlogin extends Activity {
 		        	  
 		        	  if(aid.equals("") || apass.equals(""))
 						{
-							System.out.println("You have not provided credentials");
+		        		  Toast.makeText(getBaseContext(), "oops!you have not provided credentials", 10).show();
 						}
 		        	  else{
 		        		  String [] params1 = new String[20] ;
@@ -177,6 +194,129 @@ public class Userlogin extends Activity {
                                  	            }
             );
 		        
+		        
+		        fname = (EditText) findViewById(R.id.editText3);
+		        email = (EditText) findViewById(R.id.editText4);
+		        address = (EditText) findViewById(R.id.editText5);
+		        phone =  (EditText) findViewById(R.id.editText12);
+		        npassword = (EditText) findViewById(R.id.editText6);
+		        con_password = (EditText) findViewById(R.id.editText8);
+		        signup = (Button) findViewById(R.id.button3);
+		        PopupWindow popup;
+		        TextView tv;
+		        Button bt;
+		        
+		        
+		        
+		        signup.setOnClickListener(new OnClickListener(){
+		        	public void onClick(View v1) {
+		        		
+		        	 fnam = fname.getText().toString();
+		        	 e_mail = email.getText().toString();
+		        	 add = address.getText().toString();
+		        	 phone_num = phone.getText().toString();
+		        	 npass = npassword.getText().toString();
+		        	 cpass = con_password.getText().toString();
+		        	 
+		        	  tno = "3";
+		        	  
+		        	  if (!(npass.equals(cpass))) 
+		        		  
+		        	  {
+		        		  Toast.makeText(getBaseContext(), "password and confirm password does not match", 10).show();
+		        	  }
+		        	  
+if(fnam.equals("") || e_mail.equals("") || phone_num.equals("")|| npass.equals("")||cpass.equals(""))
+						{
+							Toast.makeText(getBaseContext(), "You have not entered a mandatory value", 10).show();
+						}
+		        	  else{
+		        		  String [] params2 = new String[20] ;
+		        		    params2[0] = tno;
+							params2[1] = fnam;
+							params2[2] = e_mail;
+							params2[3] = add;
+							params2[4] = phone_num;
+							params2[5] = npass;
+							params2[6] = cpass;
+							
+		        	  
+		        		  
+		        	  
+		        	 Networkclass_nuser netclass = new Networkclass_nuser();  
+		        	 netclass.execute(params2);
+		               
+		        	  try{
+		        		  
+		        		  StringBuffer str = netclass.get();
+							String str1 = str.toString();
+							System.out.println(str1);
+							//Toast.makeText(getBaseContext(), str1, 1000000000);
+							AlertDialog.Builder alertbox = new AlertDialog.Builder(v1.getContext());
+							alertbox.setMessage(str1);
+
+					        // add a neutral button to the alert box and assign a click listener
+					        alertbox.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+
+					            // click listener on the alert box
+					            public void onClick(DialogInterface arg0, int arg1) {
+					                // the button was clicked
+					            	
+					            	
+
+					            }
+					        });
+
+					        // show it
+					        alertbox.show();
+							
+							
+							
+							/*AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+								builder.setCancelable(true);
+								//builder.setIcon(R.drawable.dialog_question);
+								builder.setTitle(str1);
+								builder.setInverseBackgroundForced(true);
+								builder.setPositiveButton("OK!Thank you", new DialogInterface.OnClickListener() {
+								  public void onClick(DialogInterface dialog, int which) {
+								    dialog.dismiss();
+								  }
+								});								
+								AlertDialog alert = builder.create();
+								alert.show();
+							System.out.println(str);*/
+							//Intent intent = new Intent(v1.getContext(), AdminloginActivity.class);
+							//Bundle b = new Bundle();
+							//b.putString("message",str1);
+							//b.putString("sessionid", aid);
+							//intent.putExtras(b);
+							//intent.putExtra("message", str1);
+							//intent.putExtra("sesionid", uid);
+							//startActivityForResult(intent,0);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (ExecutionException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}catch (Exception e){
+							e.printStackTrace();
+						}
+		        	  
+		        	  
+		        	  }
+	
+
+						
+                         
+						
+					
+						
+				}
+        		
+                                 	            }
+            );
+		       
 		        
 	    }
 	   /* public void loginHandler(View v)

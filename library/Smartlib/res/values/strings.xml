@@ -11,5 +11,7 @@
 
     <string name="title_activity_menu">MainActivity</string>
     <string name="title_activity_adminlogin">MainActivity</string>
+    <string name="title_activity_searchbook">MainActivity</string>
+    <string name="title_activity_searchresult">MainActivity</string>
 
 </resources>
