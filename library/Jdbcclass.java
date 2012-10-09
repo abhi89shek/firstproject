@@ -30,6 +30,7 @@ public class Jdbcclass {
 		FileInputStream fstream = null;
 		DataInputStream in = null;
 		BufferedReader br = null;
+		PreparedStatement stmt = null;
 		
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -59,7 +60,7 @@ public class Jdbcclass {
 				  {  // Print the content on the console
 				 				 
 						query1 = "insert into Employee(Fname,minit,Lname,Ssn,Bdate,Address,Sex,Salary,Super_ssn,Dno) values("+values+")";
-						PreparedStatement stmt = conn.prepareStatement(query1);
+						stmt = conn.prepareStatement(query1);
 				        no_of_rows=stmt.executeUpdate();
 				        query1 = null;
 				        stmt.close();				        
@@ -83,7 +84,7 @@ public class Jdbcclass {
 				  {  // Print the content on the console
 				 				 
 						query2 = "insert into Project(Pname,Pnumber,Plocation,Dnum) values("+values1+")";
-						PreparedStatement stmt = conn.prepareStatement(query2);
+						stmt = conn.prepareStatement(query2);
 				        no_of_rows=stmt.executeUpdate();
 				        query2 = null;
 				        stmt.close();				        
@@ -107,7 +108,7 @@ public class Jdbcclass {
 				  {  // Print the content on the console
 				 				 
 						query3 = "insert into Works_on(Essn,Pno,Hours) values("+values+")";
-						PreparedStatement stmt = conn.prepareStatement(query3);
+						stmt = conn.prepareStatement(query3);
 				        no_of_rows=stmt.executeUpdate();
 				        query3 = null;
 				        stmt.close();				        
@@ -131,7 +132,7 @@ public class Jdbcclass {
 				  {  // Print the content on the console
 				 				 
 						query4 = "insert into Department(Dname,Dnumber,Mgr_ssn,Mgr_start_date) values("+values+")";
-						PreparedStatement stmt = conn.prepareStatement(query4);
+						stmt = conn.prepareStatement(query4);
 				        no_of_rows=stmt.executeUpdate();
 				        query4 = null;
 				        stmt.close();				        
@@ -154,8 +155,8 @@ public class Jdbcclass {
 				  while ((values = br.readLine()) != null)  
 				  {  // Print the content on the console
 				 				 
-						query5 = "insert into Dept_locations(Dnumber,Dlocation) values("+values+")";
-						PreparedStatement stmt = conn.prepareStatement(query4);
+					  query5 = "insert into Dept_locations(Dnumber,Dlocation) values("+values+")";
+						stmt = conn.prepareStatement(query5);
 				        no_of_rows=stmt.executeUpdate();
 				        query5 = null;
 				        stmt.close();				        
@@ -182,7 +183,21 @@ public class Jdbcclass {
 			}
 			finally
 			{
+				 try{
+					
 				
+				if(conn != null)
+				{
+					conn.close();
+				}
+				if(stmt != null)
+				{
+					stmt.close();
+				}
+				}catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 
