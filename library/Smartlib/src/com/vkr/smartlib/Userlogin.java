@@ -45,12 +45,12 @@ public class Userlogin extends Activity {
 	      
 
 	    @Override
-	    public void onCreate(Bundle savedInstanceState) {
-	        super.onCreate(savedInstanceState);
+	    public void onCreate(Bundle savedInstanceState) {              //this is the first method to be loaded when the 
+	        super.onCreate(savedInstanceState);                        // app runs.This shows the main screen
 	        setContentView(R.layout.activity_userlogin);
 	                TabHost th= (TabHost) findViewById (R.id.tabhost);
 	                th.setup();
-	                TabSpec spec1=th.newTabSpec("t1");
+	                TabSpec spec1=th.newTabSpec("t1");					//3 tabs are created.one for new user,existing user and an admin
 	                spec1.setContent(R.id.tab1);
 	                
 	                spec1.setIndicator("Sign in");
@@ -66,46 +66,49 @@ public class Userlogin extends Activity {
 	                spec3.setIndicator("Admin");
 	                th.addTab(spec3);
 
-	        username=(EditText) findViewById (R.id.editText1);
-	       password=(EditText) findViewById  (R.id.editText2);
+	        username=(EditText) findViewById (R.id.editText1);           //getting the textbox values entered by the user on the mai page
+	       password=(EditText) findViewById  (R.id.editText2);			// id attribute is defined in the xml file
 	        signin=(Button) findViewById (R.id.button1);  
 	          
 	         
 	        
 	      
-	              
-	           signin.setOnClickListener(new OnClickListener(){
+	              //event handler for click on the signin button
+	           signin.setOnClickListener(new OnClickListener(){         
 						public void onClick(View v1) {
 						// TODO Auto-generated method stub
 							//Toast.makeText(this, "hello", 1000).show();
 							uid=username.getText().toString();
 					         pass=password.getText().toString();
 							System.out.println("button");
-							tno = "1";
+							tno = "1";   // a unique identifier to differentiate the tabs on the main screen
+							//check if the user has entered the credentials.display error if not.
 						if(uid.equals("") || pass.equals(""))
 						{
 							Toast.makeText(getBaseContext(), "oops!you have not provided credentials", 10).show();
 						}
 						else 
 						{
-							System.out.println("button1");
+							
 							String [] params = new String[20] ;
 							params[0] = tno;
 							params[1] = uid;
 							params[2] = pass;
-							Networkclass netclass = new Networkclass();
+							Networkclass netclass = new Networkclass(); // a new thread is created for 
+																		// making the http connection to server
 							//StringBuffer responseString = new StringBuffer("");
 							  netclass.execute(params);
 							  try {
 								StringBuffer str = netclass.get();
 								String str1 = str.toString();
+								//check if the user has provided the valid credentials
 								if(str1.equals("N"))
 								{
 									Toast.makeText(getBaseContext(), "Invalid username/password", 1000000000).show();
 								}
 								else
 								{
-								System.out.println(str);
+								//if credentials are correct a new activity with a welcome page is created
 								Intent intent = new Intent(v1.getContext(), MenuActivity.class);
 								Bundle b = new Bundle();
 								b.putString("message",str1);
@@ -134,19 +137,21 @@ public class Userlogin extends Activity {
 	                                 	            }
 	            );
 	           
+	           //this credentials are for the admin
+	           //get the credentials entered by the admin.(from an xml file)
 	           adminId=(EditText) findViewById (R.id.editText10);
 		       adminpass=(EditText) findViewById  (R.id.editText11);
 		        signinadmin=(Button) findViewById (R.id.button4); 
             
 	           
-		        
+		        //event handler for sign in button for admin
 		        signinadmin.setOnClickListener(new OnClickListener(){
 		        	public void onClick(View v1) {
 		        		
 		        	 aid = adminId.getText().toString();
 		        	 apass = adminpass.getText().toString();
-		        	  tno = "2";
-		        	  
+		        	  tno = "2"; // a unique identifier to differentiate the tabs on the main screen
+		        	//check if the admin has provided the valid credentials
 		        	  if(aid.equals("") || apass.equals(""))
 						{
 		        		  Toast.makeText(getBaseContext(), "oops!you have not provided credentials", 10).show();
@@ -159,14 +164,14 @@ public class Userlogin extends Activity {
 		        	  
 		        		  
 		        	  
-		        	 Networkclass netclass = new Networkclass();  
-		        	 netclass.execute(params1);
+			        	 Networkclass netclass = new Networkclass();  //async task for making http connections
+			        	 netclass.execute(params1);
 		               
 		        	  try{
 		        		  
 		        		  StringBuffer str = netclass.get();
 							String str1 = str.toString();
-							System.out.println(str);
+							//transfer control to the next activity(welcome page for admin)
 							Intent intent = new Intent(v1.getContext(), AdminloginActivity.class);
 							Bundle b = new Bundle();
 							b.putString("message",str1);
@@ -194,7 +199,8 @@ public class Userlogin extends Activity {
                                  	            }
             );
 		        
-		        
+		        // get values from the user for new registration
+		      
 		        fname = (EditText) findViewById(R.id.editText3);
 		        email = (EditText) findViewById(R.id.editText4);
 		        address = (EditText) findViewById(R.id.editText5);
@@ -207,7 +213,7 @@ public class Userlogin extends Activity {
 		        Button bt;
 		        
 		        
-		        
+		        //event handler for the sign up button
 		        signup.setOnClickListener(new OnClickListener(){
 		        	public void onClick(View v1) {
 		        		
@@ -220,13 +226,13 @@ public class Userlogin extends Activity {
 		        	 
 		        	  tno = "3";
 		        	  
-		        	  if (!(npass.equals(cpass))) 
+		        	  if (!(npass.equals(cpass)))  // check if password and confirm password matches
 		        		  
 		        	  {
 		        		  Toast.makeText(getBaseContext(), "password and confirm password does not match", 10).show();
 		        	  }
-		        	  
-if(fnam.equals("") || e_mail.equals("") || phone_num.equals("")|| npass.equals("")||cpass.equals(""))
+		        	  //check if all the fields are entered
+		        	  if(fnam.equals("") || e_mail.equals("") || phone_num.equals("")|| npass.equals("")||cpass.equals(""))
 						{
 							Toast.makeText(getBaseContext(), "You have not entered a mandatory value", 10).show();
 						}
@@ -242,7 +248,7 @@ if(fnam.equals("") || e_mail.equals("") || phone_num.equals("")|| npass.equals("
 							
 		        	  
 		        		  
-		        	  
+		        	  //call async task to make http connection to the server
 		        	 Networkclass_nuser netclass = new Networkclass_nuser();  
 		        	 netclass.execute(params2);
 		               
@@ -250,8 +256,8 @@ if(fnam.equals("") || e_mail.equals("") || phone_num.equals("")|| npass.equals("
 		        		  
 		        		  StringBuffer str = netclass.get();
 							String str1 = str.toString();
-							System.out.println(str1);
-							//Toast.makeText(getBaseContext(), str1, 1000000000);
+							
+							//popup message displaying the userid and an acknowledgement message
 							AlertDialog.Builder alertbox = new AlertDialog.Builder(v1.getContext());
 							alertbox.setMessage(str1);
 
@@ -272,27 +278,7 @@ if(fnam.equals("") || e_mail.equals("") || phone_num.equals("")|| npass.equals("
 							
 							
 							
-							/*AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
-								builder.setCancelable(true);
-								//builder.setIcon(R.drawable.dialog_question);
-								builder.setTitle(str1);
-								builder.setInverseBackgroundForced(true);
-								builder.setPositiveButton("OK!Thank you", new DialogInterface.OnClickListener() {
-								  public void onClick(DialogInterface dialog, int which) {
-								    dialog.dismiss();
-								  }
-								});								
-								AlertDialog alert = builder.create();
-								alert.show();
-							System.out.println(str);*/
-							//Intent intent = new Intent(v1.getContext(), AdminloginActivity.class);
-							//Bundle b = new Bundle();
-							//b.putString("message",str1);
-							//b.putString("sessionid", aid);
-							//intent.putExtras(b);
-							//intent.putExtra("message", str1);
-							//intent.putExtra("sesionid", uid);
-							//startActivityForResult(intent,0);
+							
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -319,36 +305,7 @@ if(fnam.equals("") || e_mail.equals("") || phone_num.equals("")|| npass.equals("
 		       
 		        
 	    }
-	   /* public void loginHandler(View v)
-	    {
-	    	System.out.println("button");
-			tno = "1";
-		if(uid== null || pass== null)
-		{
-			System.out.println("INVALID USERNAME/PASSWORD");
-			Toast.makeText(this,"invalid",1000).show();
-		}
-		else 
-		{
-			System.out.println("button1");
-			ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-			nameValuePairs.add(new BasicNameValuePair("tno", tno));
-			nameValuePairs.add(new BasicNameValuePair("id", uid));
-			nameValuePairs.add(new BasicNameValuePair("p1", pass)); 
-
-			try {
-			        HttpClient httpClient = new DefaultHttpClient();
-			        HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/webapp/Controllerservlet/");//the webserver address goes in here
-			        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-			        HttpResponse response = httpClient.execute(httpPost);
-			        HttpEntity entity = response.getEntity();
-			        InputStream is = entity.getContent();   
-			        Toast.makeText(this,is.toString(),1000).show();
-			    }catch (Exception e) {
-			        // TODO: handle exception
-			                	    }
-		}
-	    }*/
+	   
 
 
 @Override

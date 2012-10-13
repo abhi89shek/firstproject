@@ -15,20 +15,19 @@ public class MenuActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        
-        Bundle extras = getIntent().getExtras();
+     // get the values from the calling activity via an intent
+        Bundle extras = getIntent().getExtras();   
        
-            String message = extras.getString("message");
-            String sessionid = extras.getString("sessionid");
-            
+            String message = extras.getString("message"); //get the message from the calling activity
+            //store the userid in a session variable
+            String sessionid = extras.getString("sessionid");             
             TextView mtext = (TextView)findViewById(R.id.tv3);
-            mtext.setText(message);
-            
+            mtext.setText(message);            
             Button searchbutton = (Button)findViewById(R.id.butt1);
-            
+            // event handler for search button
             searchbutton.setOnClickListener(new OnClickListener(){
 	        	public void onClick(View v1) {
-	        		
+	        		// onclick pass the intent to the next activity
 	        		Intent intent = new Intent(v1.getContext(),SearchbookActivity.class);
 	        		startActivityForResult(intent,0);
 	        		

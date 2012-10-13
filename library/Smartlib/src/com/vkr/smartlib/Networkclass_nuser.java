@@ -21,9 +21,9 @@ public class Networkclass_nuser extends  AsyncTask<String[], Void, StringBuffer 
 	 protected StringBuffer doInBackground(String[]... params) {
 	    	
 	    	String [] temp = new String[20] ;
-	    	temp = params[0];
+	    	temp = params[0];			// get the parameters from the main thread
 	    	ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-	    	nameValuePairs.add(new BasicNameValuePair("tno", temp[0]));
+	    	nameValuePairs.add(new BasicNameValuePair("tno", temp[0]));	//parameters are added to an arraylist
 			nameValuePairs.add(new BasicNameValuePair("fullname", temp[1]));
 			nameValuePairs.add(new BasicNameValuePair("email", temp[2]));
 			nameValuePairs.add(new BasicNameValuePair("address", temp[3]));
@@ -33,22 +33,22 @@ public class Networkclass_nuser extends  AsyncTask<String[], Void, StringBuffer 
 	    	try {
 		        HttpClient httpClient = new DefaultHttpClient();
 		        System.out.println("button3");
-		        HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/webapp/Controllerservlet");
+		        HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/webapp/Controllerservlet"); //the webserver address goes in here
 		        System.out.println("button4");//the webserver address goes in here
 		        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 		        System.out.println("button5");
-		        HttpResponse response = httpClient.execute(httpPost);
+		        HttpResponse response = httpClient.execute(httpPost);	//connect to the server via httppost
 		        System.out.println("button6");
-		        HttpEntity entity = response.getEntity();
+		        HttpEntity entity = response.getEntity();				//get the response from the server 
 		        System.out.println("button7");
-		        InputStream is = entity.getContent();  
+		        InputStream is = entity.getContent();  					// store it as an inputstream 
 		        System.out.println("button8");
 		        BufferedReader reader = new BufferedReader(
 	                    new InputStreamReader(is, "UTF-8"));
 		        StringBuffer responseString = new StringBuffer("");
 	            String line;
 	            while ((line = reader.readLine()) != null) {
-	                responseString.append(line);
+	                responseString.append(line);						//append the result to string buffer
 		       // System.out.println(responseString);
 	            }
 		        

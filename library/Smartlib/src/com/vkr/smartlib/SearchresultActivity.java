@@ -20,7 +20,7 @@ public class SearchresultActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchresult);
         try{
-        Bundle extras = getIntent().getExtras();
+        Bundle extras = getIntent().getExtras(); //get the list of books from the calling activity
         bookarray = extras.getStringArrayList("books");
         Iterator it = bookarray.iterator();
        /* int i =0;
@@ -28,7 +28,7 @@ public class SearchresultActivity extends Activity {
     	   listitems[i] =(String)it.next();
     	   i++;
        }while(it.hasNext());*/
-        ListView lst=(ListView) findViewById (R.id.listview1);
+        ListView lst=(ListView) findViewById (R.id.listview1); // display the books in a listview
         ArrayAdapter<String> adp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, bookarray);
         lst.setAdapter(adp);
         }catch(Exception e)

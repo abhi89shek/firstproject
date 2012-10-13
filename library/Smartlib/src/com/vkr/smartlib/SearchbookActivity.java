@@ -36,14 +36,16 @@ public class SearchbookActivity extends Activity {
        Button search = (Button)findViewById(R.id.butts1);
        search.setOnClickListener(new OnClickListener(){
        	public void onClick(View v1) {
+       		//radio buttons to search books based on 3 criterias
        		src=(EditText) findViewById (R.id.et1);
        		rb1 =  (RadioButton)findViewById(R.id.radiobutts1);
        		rb2 = (RadioButton)findViewById(R.id.radiobutts2);
        		rb3 = (RadioButton)findViewById(R.id.radiobutts3);
-       		if(rb1.isChecked())
+       		if(rb1.isChecked())  // search book by name
        		{
        			ano = "4";
-       			String keyword = src.getText().toString();       			 
+       			String keyword = src.getText().toString();   
+       			//async task to make http connection
        			SearchBooktask sbtask = new SearchBooktask();
        			parameters1[0] = ano;
        			parameters1[1] = keyword;
@@ -51,6 +53,7 @@ public class SearchbookActivity extends Activity {
        			books = new ArrayList();
        			try {
 					books = sbtask.get();
+					//if books are found matching the name ,a new page is played with natching book names
 					Intent intent = new Intent(v1.getContext(),SearchresultActivity.class);
 					Bundle b = new Bundle();
 					b.putStringArrayList("books", books);
@@ -73,7 +76,7 @@ public class SearchbookActivity extends Activity {
        			
        			
        		}
-       		if(rb2.isChecked())
+       		if(rb2.isChecked())  //search by book ISBN
        		{
        			ano = "5";
        			String keyword = src.getText().toString();       			 
@@ -104,7 +107,7 @@ public class SearchbookActivity extends Activity {
 					e.printStackTrace();
 				}
        		}
-       		if(rb3.isChecked())
+       		if(rb3.isChecked())		//search by author name
        		{
        			ano = "6";
        			String keyword = src.getText().toString();       			 

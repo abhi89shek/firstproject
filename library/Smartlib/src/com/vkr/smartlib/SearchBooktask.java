@@ -26,7 +26,7 @@ public class SearchBooktask extends  AsyncTask<String[], Void, ArrayList >{
     	
     	String [] temp = new String[20] ;
     	ArrayList<String> list =  new ArrayList<String>();
-    	temp = params[0];
+    	temp = params[0];		// get the parameters from the main thread
     	ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("tno", temp[0]));
 		nameValuePairs.add(new BasicNameValuePair("keyword", temp[1]));
@@ -34,24 +34,24 @@ public class SearchBooktask extends  AsyncTask<String[], Void, ArrayList >{
 				
     	try {
 	        HttpClient httpClient = new DefaultHttpClient();
-	       
+	        //URL to access the server
 	        HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/webapp/Controllerservlet");
 	        //the webserver address goes in here
 	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-	       
+	        //execute a http call to the server
 	        HttpResponse response = httpClient.execute(httpPost);
-	        
+	        //store the response
 	        HttpEntity entity = response.getEntity();
 	        
 	        InputStream is = entity.getContent();  
-	        
+	        //convert the input stream to UTF-8 format
 	        BufferedReader reader = new BufferedReader(
                     new InputStreamReader(is, "UTF-8"));
 	        //StringBuffer responseString = new StringBuffer("");
 	        //String line = reader.toString();
 	        //System.out.println(line);
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) { // store the list of books in an arraylist
                 list.add(line);
                 //System.out.println(line);
 	       // System.out.println(responseString);

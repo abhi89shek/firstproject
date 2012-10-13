@@ -11,11 +11,13 @@ public class AdminloginActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminlogin);
-        Bundle extras = getIntent().getExtras();
-        
+     // get the values from the calling activity via an intent
+        Bundle extras = getIntent().getExtras();  
+      //get the message from the calling activity
         String message = extras.getString("message");
+        //store the adminid in the session variable
         String sessionid = extras.getString("sessionid");
-        
+        //set the message in the textview of the current activity
         TextView mtext = (TextView)findViewById(R.id.tva1);
         mtext.setText(message);
     }
