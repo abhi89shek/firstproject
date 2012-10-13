@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Servlet implementation class Controllerservlet
@@ -38,34 +39,40 @@ public class Controllerservlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("inside servlet");
 		ResultSet rs = null;
         PrintWriter out = response.getWriter();
+        ArrayList list = null;
 
-		int ano = Integer.parseInt(request.getParameter("activityno"));
-		if(ano == 1)
-		{			
-		    String uid = request.getParameter("userid");
-		    String password = request.getParameter("password");
-			String query = "select Fname from user where MID = ? and password = ?";
-			Connection conn = new DBConnection().getDbconnection();
+		int ano = Integer.parseInt(request.getParameter("tno")); //get the unique activity identifier from the app
+		//ano = 1;
+		if(ano == 1) // existing user sign in
+		{		
+			System.out.println("inside servlet");
+		    int uid = Integer.parseInt(request.getParameter("id"));
+		    String password = request.getParameter("pass");
+			String query = "select Fname from user where MID = ? and password = ?"; //query to identify authenticity of user
+			// make jdbc call to mysql server
+			Connection conn = new DBConnection().getDbconnection(); 
 			try {
-				PreparedStatement ps = conn.prepareStatement(query);
-				ps.setString(1, uid);
+				PreparedStatement ps = conn.prepareStatement(query); //use prepared statement to make the query ready
+				ps.setInt(1, uid);
 				ps.setString(2,password);
-				rs = ps.executeQuery();
+				rs = ps.executeQuery(); // execute the query
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
-				if(rs.next())
+				if(rs.next()) // if entry is found in db, set the welcome message
 				{
+					System.out.println("db connected");
 					String fname = rs.getString(1);
 					out.println("Welcome"+""+fname+"");
 				}
-				else
+				else // else set a flag
 				{
-					out.println("invalid username/password");
+					out.println("N");
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -73,25 +80,26 @@ public class Controllerservlet extends HttpServlet {
 			}
 			finally
 			{
-				try {
-					rs.close();
+				//close existing database connections
+				//try {
+					//rs.close();
 				
-				if(conn != null)
+				/*if(conn != null)
 				{
-					conn.close();
+					//conn.close();
 				}
-				} catch (SQLException e) {
+				}// //catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+					//e.printStackTrace();
+				}//*/
 				
 			}
 		}
 		
-		if (ano == 2)
+		if (ano == 2) // admin sign in
 		{
-			String uid = request.getParameter("userid");
-		    String password = request.getParameter("password");
+			String uid = request.getParameter("id");
+		    String password = request.getParameter("pass");
 			String query = "select Fname from admin where AID = ? and password = ?";
 			Connection conn = new DBConnection().getDbconnection();
 			try {
@@ -107,11 +115,11 @@ public class Controllerservlet extends HttpServlet {
 				if(rs.next())
 				{
 					String fname = rs.getString(1);
-					out.println("Welcome"+""+fname+"");
+					out.println("Welcome"+" "+fname+"");
 				}
 				else
 				{
-					out.println("invalid username/password");
+					out.println("N");
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -133,48 +141,47 @@ public class Controllerservlet extends HttpServlet {
 				
 			}
 		}
-		if(ano == 3)
+		if(ano == 3) // new user sign up
 		{
-			String fname = request.getParameter("firstname");
-			String lname = request.getParameter("lastname");
+			String fname = request.getParameter("fullname");
+			//String lname = request.getParameter("lastname");
 			String address = request.getParameter("address");
 			String email = request.getParameter("email");
 			String phoneno = request.getParameter("phno");
 			String password = request.getParameter("password");
-			String confirmPassword = request.getParameter("confirmpassword");
+			//String confirmPassword = request.getParameter("confirmpassword");
 			int no_of_rows = 0;
+			ResultSet rs1 = null;
 			
-			if (!(password.equals(confirmPassword)))
-			{
-				out.println("please confirm the password. Does not match");
-				return ;
-			}
-			if(!(email.contains("@")))
-			{
-				out.println("not a valid email id");
-				return ;
-			}
-			String query = "insert into user(fname,lname,password,email,address,phno) values (?,?,?,?,?,?) ";
+			
+			
+			String query = "insert into user(Fname,password,emailid,Maddress,Pno) values (?,?,?,?,?) ";
 			Connection conn = new DBConnection().getDbconnection();
 			try {
 				PreparedStatement ps = conn.prepareStatement(query);
 				ps.setString(1,fname);
-				ps.setString(2,lname);
-				ps.setString(3,password);
-				ps.setString(4,email);
-				ps.setString(5,address);
-				ps.setString(6,phoneno);
+				
+				ps.setString(2,password);
+				ps.setString(3,email);
+				ps.setString(4,address);
+				ps.setString(5,phoneno);
 				no_of_rows =ps.executeUpdate();
-			
-				if(no_of_rows == 1)
+				
+				if(no_of_rows == 1) // if the insert is successfull generate an unique id to the user
 				{
+					PreparedStatement ps1 = null;
+					String query1 = "select MID from user where Pno = ? ";
+					Connection conn1 = new DBConnection().getDbconnection();
+					 ps1 = conn.prepareStatement(query1);
+					 ps1.setString(1,phoneno);
 					
-					out.println("Thank you for registering. Please login ");
-				}
-				else
-				{
-					out.println("error in updating details.Please contact admin");
-				}
+						 rs1 = ps1.executeQuery();
+						if(rs1.next())
+						{
+							out.println("Thank you for registering.Your user id is"+rs1.getInt(1)+" Please login ");
+						}
+									
+				}		
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -182,7 +189,7 @@ public class Controllerservlet extends HttpServlet {
 			finally
 			{
 				try {
-					rs.close();
+					rs1.close();
 				
 				if(conn != null)
 				{
@@ -195,7 +202,137 @@ public class Controllerservlet extends HttpServlet {
 				
 			}
 		}
+			
+			if (ano == 4) //search based on bookname
+			{
+				list = new ArrayList();
+				String Keyword = request.getParameter("keyword");
+				String searchquery = "select Bname from book where Bname like'%"+Keyword+"%' and Bnoofcopies > 0 " ;
+				Connection conn = new DBConnection().getDbconnection();
+				try {
+					PreparedStatement ps = conn.prepareStatement(searchquery);
+					//ps.setString(1, uid);
+					//ps.setString(1,Keyword);
+					rs = ps.executeQuery();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					while(rs.next()) //add the books into the arraylist
+					{
+						list.add(rs.getString(1));
+						//System.out.println(list.get(1));
+					}
+					out.println(list);
+				}catch
+					(SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				finally
+				{
+					try {
+						rs.close();					
+					if(conn != null)
+					{
+						conn.close();
+					}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			}
+			if (ano == 5) //search based on books ISBN
+			{
+				list = new ArrayList();
+				int Keyword = Integer.parseInt(request.getParameter("keyword"));
+				String searchquery = "select Bname from book where BISBN = ? and Bnoofcopies > 0 ";
+				Connection conn = new DBConnection().getDbconnection();
+				try {
+					PreparedStatement ps = conn.prepareStatement(searchquery);
+					//ps.setString(1, uid);
+					ps.setInt(1,Keyword);
+					rs = ps.executeQuery();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					while(rs.next())
+					{
+						list.add(rs.getString(1));
+					}
+					out.println(list);
+				}catch
+					(SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				finally
+				{
+					try {
+						rs.close();					
+					if(conn != null)
+					{
+						conn.close();
+					}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			}
+			
+			
+			if (ano == 6) //search based on book author
+			{
+				list = new ArrayList();
+				String Keyword = request.getParameter("keyword");
+				String searchquery = "select Bname from book where Bauthor like'%"+Keyword+"%'and Bnoofcopies > 0 ";
+				Connection conn = new DBConnection().getDbconnection();
+				try {
+					PreparedStatement ps = conn.prepareStatement(searchquery);
+					//ps.setString(1, uid);
+					//ps.setString(1,Keyword);
+					rs = ps.executeQuery();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					while(rs.next())
+					{
+						list.add(rs.getString(1));
+					}
+					out.println(list);
+				}catch
+					(SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				finally
+				{
+					try {
+						rs.close();					
+					if(conn != null)
+					{
+						conn.close();
+					}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			}
+				
 		
-	}
+				}
+	
 
 }
+
