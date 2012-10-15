@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/tvse1"
+        android:layout_width="240dp"
+        android:layout_height="210dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="For over 20 years, Software Engineering: A Practitioner&apos;s Approach has been the bestselling guide to software engineering for students and industry professionals alike. The sixth edition continues to lead the way in software engineering. A new Part 4 on Web Engineering presents a complete engineering approach for the analysis, design, and testing of Web Applications, increasingly important for today&apos;s students." />
+
+    <ImageView
+        android:id="@+id/imse1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/se" />
+
+    <RatingBar
+        android:id="@+id/rbse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="65dp"
+        android:clickable="true"
+        android:max="5"
+        android:numStars="5" />
+
+    <Button
+        android:id="@+id/btnse1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="19dp"
+        android:layout_toRightOf="@+id/imse1"
+        android:text="Borrow" />
+
+    <Button
+        android:id="@+id/btnse2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnse1"
+        android:layout_alignBottom="@+id/btnse1"
+        android:layout_alignRight="@+id/rbse"
+        android:text="Add To Cart" />
+
+</RelativeLayout>

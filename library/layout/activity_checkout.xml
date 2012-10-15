@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText" >
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="65dp"
+        android:layout_marginLeft="46dp"
+        android:text="Borrow" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_marginLeft="33dp"
+        android:layout_toRightOf="@+id/button1"
+        android:text="Add to Cart" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/davinci"
+        android:contentDescription="@string/hello_world"></ImageView>
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/imageView1"
+        android:layout_toRightOf="@+id/imageView1"
+        android:text="While in Paris on business, Harvard symbologist Robert Langdon receives an urgent late-night phone call: the elderly 
+        curator of the Louvre has been murdered inside the museum.Near the body, police have found a baffling cipher.While working to solve the enigmatic riddle, 
+        Langdon is stunned to discover it leads to a trail of clues hidden in the works of Da Vinci --
+        clues visible for all to see -- yet ingeniously disguised by the painter." 
+        
+         
+         />
+
+    <RatingBar
+        android:id="@+id/ratingBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button1"
+        android:layout_alignRight="@+id/button2"
+        android:rating="0" 
+        android:focusable="true"
+        android:clickable="true"
+        android:saveEnabled="true"
+        android:stepSize="3"/>
+        
+</RelativeLayout>
+
