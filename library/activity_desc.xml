@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/tvde1"
+        android:layout_width="240dp"
+        android:layout_height="210dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="" />
+
+    <ImageView
+        android:id="@+id/imde1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+         />
+
+    <RatingBar
+        android:id="@+id/rbde"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="65dp"
+        android:clickable="true"
+        android:max="5"
+        android:numStars="5" />
+
+    <Button
+        android:id="@+id/btnde1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="19dp"
+        android:layout_toRightOf="@+id/imde1"
+        android:text="Borrow" />
+
+    <Button
+        android:id="@+id/btnde2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnde1"
+        android:layout_alignBottom="@+id/btnde1"
+        android:layout_alignRight="@+id/rbde"
+        android:text="Add To Cart" />
+
+</RelativeLayout>
