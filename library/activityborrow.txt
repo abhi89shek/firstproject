@@ -1,0 +1,25 @@
+ls.setOnItemClickListener(this);
+         }catch(Exception e)
+         {
+        	 e.printStackTrace();
+         }
+            }
+               
+            
+            public void onItemClick(AdapterView<?> p, View v, int position, long id) {
+                Intent intent;
+                int pos=position;
+                switch(image[pos])
+                {
+                case 0x7f020005:intent=new Intent(this,DescActivity.class);
+                                        Bundle b=new Bundle();
+                       int dav=0x7f020005;
+                       b.putInt("davinci",dav);
+                       intent.putExtras(b);
+                       startActivity(intent);
+                       break;
+                case 0x7f02000f:intent=new Intent(this,SeActivity.class);
+                startActivity(intent);
+                break;       
+                	
+                }
