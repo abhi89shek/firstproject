@@ -33,15 +33,18 @@
         <activity
             android:name=".SearchbookActivity"
             android:label="@string/title_activity_searchbook" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".SearchresultActivity"
             android:label="@string/title_activity_searchresult" >
+        </activity>
+        <activity
+            android:name=".DescActivity"
+            android:label="@string/title_activity_desc" >
+        </activity>
+        <activity
+            android:name=".CartActivity"
+            android:label="@string/title_activity_cart" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

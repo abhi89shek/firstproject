@@ -1,5 +1,7 @@
 package com.vkr.smartlib;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 
 import java.io.BufferedReader;
@@ -20,7 +22,22 @@ import org.apache.http.message.BasicNameValuePair;
 
 public class Networkclass extends  AsyncTask<String[], Void, StringBuffer >{
 	
+	private Context context;
+	private ProgressDialog dialog;
 	
+	public Networkclass(Context c)
+	{
+		super();
+		context = c;
+	}
+	
+	
+	protected void onPreExecute()
+	{
+		dialog = new ProgressDialog(context); // App - your main activity class
+        dialog.setMessage("validating ...Please, wait...");
+        dialog.show();
+	}
 	
     protected StringBuffer doInBackground(String[]... params) {
     	
@@ -62,6 +79,7 @@ public class Networkclass extends  AsyncTask<String[], Void, StringBuffer >{
     	}
     protected void onPostExecute(StringBuffer result) {
     	
+    	dialog.dismiss();
     	 returnValue(result);     //return the result to the main thread
     	 
     }

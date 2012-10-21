@@ -1,6 +1,10 @@
 package com.vkr.smartlib;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ParseException;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -15,16 +19,36 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 
-public class SearchBooktask extends  AsyncTask<String[], Void, ArrayList >{
+public class SearchBooktask extends  AsyncTask<String[], Void, String >{
+	
+	private Context context;
+	private ProgressDialog dialog;
+	
+	public SearchBooktask(Context c)
+	{
+		super();
+		context = c;
+	}
 	
 	
+	protected void onPreExecute()
+	{
+		dialog = new ProgressDialog(context); // App - your main activity class
+        dialog.setMessage("Fetching books ...Please, wait...");
+        dialog.show();
+	}
 	
-    protected ArrayList doInBackground(String[]... params) {
+    protected String doInBackground(String[]... params) {
     	
     	String [] temp = new String[20] ;
+    	String result = null;
+    	String bookname = null;
     	ArrayList<String> list =  new ArrayList<String>();
     	temp = params[0];		// get the parameters from the main thread
     	ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
@@ -47,18 +71,18 @@ public class SearchBooktask extends  AsyncTask<String[], Void, ArrayList >{
 	        //convert the input stream to UTF-8 format
 	        BufferedReader reader = new BufferedReader(
                     new InputStreamReader(is, "UTF-8"));
-	        //StringBuffer responseString = new StringBuffer("");
+	       StringBuffer responseString = new StringBuffer("");
 	        //String line = reader.toString();
 	        //System.out.println(line);
             String line;
             while ((line = reader.readLine()) != null) { // store the list of books in an arraylist
-                list.add(line);
-                //System.out.println(line);
-	       // System.out.println(responseString);
+                //list.add(line);
+                responseString.append(line);
             }
 	        
-	        //retureturn rn responseString;
-            return list;
+	        String books = responseString.toString();
+	        return books;
+            
             	
 	        
 	    }catch (Exception e) {
@@ -71,13 +95,14 @@ public class SearchBooktask extends  AsyncTask<String[], Void, ArrayList >{
     	   		
     		
     	}
-    protected void onPostExecute(ArrayList result) {
+    protected void onPostExecute(String result) {
     	
+    	 dialog.dismiss();
     	 returnValue(result);
     	 
     }
 		
-    protected ArrayList returnValue(ArrayList strb) {
+    protected String returnValue(String strb) {
     	
     	return strb;
 	}

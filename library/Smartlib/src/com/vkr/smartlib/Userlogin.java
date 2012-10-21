@@ -27,7 +27,7 @@ import org.apache.http.message.BasicNameValuePair;
 public class Userlogin extends Activity {
 	
 	    Button signin,signinadmin, signup;
-		EditText username,password,adminId,adminpass, fname , email , phone, address, npassword,con_password; 
+		EditText username,usname,password,adminId,adminpass, fname , email , phone, address, npassword,con_password; 
 		String uid = null;
 		String pass = null;
 		String tno = null;
@@ -39,6 +39,7 @@ public class Userlogin extends Activity {
 		String npass = null;
 		String cpass = null;
 		String add = null;
+		String usname1 = null;
 		
 		
 	   
@@ -94,7 +95,7 @@ public class Userlogin extends Activity {
 							params[0] = tno;
 							params[1] = uid;
 							params[2] = pass;
-							Networkclass netclass = new Networkclass(); // a new thread is created for 
+							Networkclass netclass = new Networkclass(Userlogin.this); // a new thread is created for 
 																		// making the http connection to server
 							//StringBuffer responseString = new StringBuffer("");
 							  netclass.execute(params);
@@ -164,7 +165,7 @@ public class Userlogin extends Activity {
 		        	  
 		        		  
 		        	  
-			        	 Networkclass netclass = new Networkclass();  //async task for making http connections
+			        	 Networkclass netclass = new Networkclass(Userlogin.this);  //async task for making http connections
 			        	 netclass.execute(params1);
 		               
 		        	  try{
@@ -205,6 +206,7 @@ public class Userlogin extends Activity {
 		        email = (EditText) findViewById(R.id.editText4);
 		        address = (EditText) findViewById(R.id.editText5);
 		        phone =  (EditText) findViewById(R.id.editText12);
+		        usname =  (EditText) findViewById(R.id.username);
 		        npassword = (EditText) findViewById(R.id.editText6);
 		        con_password = (EditText) findViewById(R.id.editText8);
 		        signup = (Button) findViewById(R.id.button3);
@@ -220,6 +222,7 @@ public class Userlogin extends Activity {
 		        	 fnam = fname.getText().toString();
 		        	 e_mail = email.getText().toString();
 		        	 add = address.getText().toString();
+		        	 usname1 = usname.getText().toString();
 		        	 phone_num = phone.getText().toString();
 		        	 npass = npassword.getText().toString();
 		        	 cpass = con_password.getText().toString();
@@ -243,13 +246,14 @@ public class Userlogin extends Activity {
 							params2[2] = e_mail;
 							params2[3] = add;
 							params2[4] = phone_num;
-							params2[5] = npass;
-							params2[6] = cpass;
+							params2[5] = usname1;
+							params2[6] = npass;
+							params2[7] = cpass;
 							
 		        	  
 		        		  
 		        	  //call async task to make http connection to the server
-		        	 Networkclass_nuser netclass = new Networkclass_nuser();  
+		        	 Networkclass_nuser netclass = new Networkclass_nuser(Userlogin.this);  
 		        	 netclass.execute(params2);
 		               
 		        	  try{

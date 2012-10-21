@@ -14,10 +14,29 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 
 public class Networkclass_nuser extends  AsyncTask<String[], Void, StringBuffer > {
 
+	
+	private Context context;
+	private ProgressDialog dialog;
+	
+	public Networkclass_nuser(Context c)
+	{
+		super();
+		context = c;
+	}
+	
+	
+	protected void onPreExecute()
+	{
+		dialog = new ProgressDialog(context); // App - your main activity class
+        dialog.setMessage("Updating details ...Please, wait...");
+        dialog.show();
+	}
 	 protected StringBuffer doInBackground(String[]... params) {
 	    	
 	    	String [] temp = new String[20] ;
@@ -68,6 +87,7 @@ public class Networkclass_nuser extends  AsyncTask<String[], Void, StringBuffer 
 	    	}
 	    protected void onPostExecute(StringBuffer result) {
 	    	
+	    	dialog.dismiss();
 	    	 returnValue(result);
 	    	 
 	    }

@@ -41,8 +41,11 @@ public class Controllerservlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("inside servlet");
 		ResultSet rs = null;
+		String str = "";
+		String finalstr = null;
+		
         PrintWriter out = response.getWriter();
-        ArrayList list = null;
+        ArrayList<String> list = null;
 
 		int ano = Integer.parseInt(request.getParameter("tno")); //get the unique activity identifier from the app
 		//ano = 1;
@@ -68,7 +71,7 @@ public class Controllerservlet extends HttpServlet {
 				{
 					System.out.println("db connected");
 					String fname = rs.getString(1);
-					out.println("Welcome"+""+fname+"");
+					out.println("Welcome ,"+""+fname+"");
 				}
 				else // else set a flag
 				{
@@ -205,9 +208,9 @@ public class Controllerservlet extends HttpServlet {
 			
 			if (ano == 4) //search based on bookname
 			{
-				list = new ArrayList();
+				list = new ArrayList<String>();
 				String Keyword = request.getParameter("keyword");
-				String searchquery = "select Bname from book where Bname like'%"+Keyword+"%' and Bnoofcopies > 0 " ;
+				String searchquery = "select Bname,BISBN from book where Bname like'%"+Keyword+"%' and Bnoofcopies > 0 " ;
 				Connection conn = new DBConnection().getDbconnection();
 				try {
 					PreparedStatement ps = conn.prepareStatement(searchquery);
@@ -221,12 +224,15 @@ public class Controllerservlet extends HttpServlet {
 				try {
 					while(rs.next()) //add the books into the arraylist
 					{
-						list.add(rs.getString(1));
-						//System.out.println(list.get(1));
+						Integer isbn = rs.getInt(2);
+						String bisbn = isbn.toString();
+						str = str + rs.getString(1) + "("+ bisbn + ")" + ":";
 					}
-					out.println(list);
+					finalstr = str.substring(0,(str.length()-1) );
+					System.out.println(finalstr);
+					out.println(finalstr);
 				}catch
-					(SQLException e) {
+					(Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -247,9 +253,9 @@ public class Controllerservlet extends HttpServlet {
 			}
 			if (ano == 5) //search based on books ISBN
 			{
-				list = new ArrayList();
+				list = new ArrayList<String>();
 				int Keyword = Integer.parseInt(request.getParameter("keyword"));
-				String searchquery = "select Bname from book where BISBN = ? and Bnoofcopies > 0 ";
+				String searchquery = "select Bname,BISBN from book where BISBN = ? and Bnoofcopies > 0 ";
 				Connection conn = new DBConnection().getDbconnection();
 				try {
 					PreparedStatement ps = conn.prepareStatement(searchquery);
@@ -261,13 +267,17 @@ public class Controllerservlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				try {
-					while(rs.next())
+					while(rs.next()) //add the books into the arraylist
 					{
-						list.add(rs.getString(1));
+						Integer isbn = rs.getInt(2);
+						String bisbn = isbn.toString();
+						str = str + rs.getString(1) + "("+ bisbn + ")" + ":";
 					}
-					out.println(list);
+					finalstr = str.substring(0,(str.length()-1) );
+					System.out.println(finalstr);
+					out.println(finalstr);
 				}catch
-					(SQLException e) {
+					(Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -290,9 +300,9 @@ public class Controllerservlet extends HttpServlet {
 			
 			if (ano == 6) //search based on book author
 			{
-				list = new ArrayList();
+				list = new ArrayList<String>();
 				String Keyword = request.getParameter("keyword");
-				String searchquery = "select Bname from book where Bauthor like'%"+Keyword+"%'and Bnoofcopies > 0 ";
+				String searchquery = "select Bname,BISBN from book where Bauthor like'%"+Keyword+"%'and Bnoofcopies > 0 ";
 				Connection conn = new DBConnection().getDbconnection();
 				try {
 					PreparedStatement ps = conn.prepareStatement(searchquery);
@@ -304,13 +314,19 @@ public class Controllerservlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				try {
-					while(rs.next())
+					while(rs.next()) //add the books into the arraylist
 					{
-						list.add(rs.getString(1));
+						//list.add(rs.getString(1));
+						Integer isbn = rs.getInt(2);
+						String bisbn = isbn.toString();
+						str = str + rs.getString(1) + "("+ bisbn + ")" + ":";
+						//System.out.println(list.get(1));
 					}
-					out.println(list);
+					finalstr = str.substring(0,(str.length()-1) );
+					System.out.println(finalstr);
+					out.println(finalstr);
 				}catch
-					(SQLException e) {
+					(Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -329,6 +345,127 @@ public class Controllerservlet extends HttpServlet {
 					
 				}
 			}
+			if (ano == 7) 
+			{
+				
+				int sessionid = Integer.parseInt(request.getParameter("sessionid"));
+				String reportquery = "select datediff(Ddate,curdate()) as diffdate ,Bname,Ddate,fine from report where MID = ? ";
+				
+				Connection conn = new DBConnection().getDbconnection();
+				try {
+					PreparedStatement ps = conn.prepareStatement(reportquery);
+					
+					ps.setInt(1, sessionid);
+					//ps.setString(1,Keyword);
+					rs = ps.executeQuery();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					while(rs.next())
+					{
+						if (rs.getInt(1) == 1)
+						{
+								   out.println("Hello! your book "+rs.getString(2)+" is due tomorrow");
+								   System.out.println("gotcha");
+						}
+						if (rs.getInt(1) == 0)
+						{
+						   out.println("Hello! your book "+rs.getString(2)+" is due today");
+						   System.out.println("gotcha");
+						}
+						if (rs.getInt(1) < 0)
+						{
+							out.println("hello! your book "+rs.getString(2)+" was due on "+rs.getDate(3)+ ". you have been charged a fine of "+rs.getInt(4)+ " ");
+						}
+					}
+					
+				}catch
+					(Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				finally
+				{
+					try {
+						rs.close();					
+					if(conn != null)
+					{
+						conn.close();
+					}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			}
+			if(ano==8) // To borrow the book
+			{
+				
+				String bname = request.getParameter("bname");
+				int mid = Integer.parseInt(request.getParameter("mid"));
+				int isbn = Integer.parseInt(request.getParameter("isbn"));
+				String borrowQuery = " UPDATE book SET Bnoofcopies = Bnoofcopies-1 WHERE BISBN = ?" ;
+				String borrowQuery1 = "INSERT INTO report(MID,Bisbn,Bdate,Ddate,IsReturned,fine,Bname) values (?,?,curdate(),(DATE_ADD(curdate(), INTERVAL 10 DAY)),'N',0,?)";
+				
+				Connection conn = new DBConnection().getDbconnection();
+				try {
+					PreparedStatement ps = conn.prepareStatement(borrowQuery);
+					PreparedStatement ps1 = conn.prepareStatement(borrowQuery1);
+					
+					ps.setInt(1, isbn);
+					ps1.setInt(1,mid);
+					ps1.setInt(2, isbn);
+					ps1.setString(3,bname);
+				   int noOfRows=ps.executeUpdate();
+				   int noOfRows1= ps1.executeUpdate();
+				   
+				   if(noOfRows == 1 && noOfRows1 == 1 )
+				   {
+					   System.out.println("ddate");
+					   String ddatequery = "select Ddate from report where MID = ? and BISBN = ? ";
+					   PreparedStatement ps2 = conn.prepareStatement(ddatequery);
+					   ps2.setInt(1, mid);
+					   ps2.setInt(2, isbn);
+					   rs = ps2.executeQuery();
+					   if(rs.next())
+					   {
+						   System.out.println("success");
+						   String duedate = rs.getDate(1).toString();
+						   out.println(duedate);
+					   }
+					   
+				   }else
+				   {
+					   out.println("");
+				   }
+				   
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				finally
+				{
+					try {
+						rs.close();					
+					if(conn != null)
+					{
+						conn.close();
+					}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+				
+				
+			}
+			
 				
 		
 				}

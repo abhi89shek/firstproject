@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+
+    <ImageView
+        android:id="@+id/flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:contentDescription="@string/hello_world"
+        android:tag="flag"
+          />
+
+    <TextView
+        android:id="@+id/tvbn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/flag"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="13dp"
+        android:textColor="#FFFFFF"
+        android:text="Bookname:"
+         />
+
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/hello_world"
+        android:src="@drawable/arrow1" />
+    <TextView
+        android:id="@+id/isbn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvbn"
+        android:layout_below="@+id/tvbn"
+        android:textSize="13dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#FFFFFF"
+        android:text="isbn:"
+         />
+
+    <TextView
+        android:id="@+id/qty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/isbn"
+        android:layout_below="@+id/isbn"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="13dp"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/tvbkn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/tvbn"
+        android:layout_marginLeft="5dp"
+        android:textSize="13dp"
+        android:textColor="#FFFFFF"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/isbn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvbkn"
+        android:layout_below="@+id/tvbn"
+        android:textColor="#FFFFFF"
+        android:textSize="13dp" />
+
+</RelativeLayout>

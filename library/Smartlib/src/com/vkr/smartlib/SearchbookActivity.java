@@ -22,15 +22,20 @@ public class SearchbookActivity extends Activity {
 	String []parameters1 = new String[3];
 	String []parameters2 = new String[3];
 	String []parameters3 = new String[3];
-	ArrayList books = null;
+	String sessionid = null;
+	
+	String books = null;
 	Iterator it = null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchbook);
         Bundle extras = getIntent().getExtras();
-        //String sessionid = extras.getString("sessionid");
-
+        if(extras != null)
+        {
+        	 sessionid = extras.getString("sessionid");
+        }
+        else{}
        
      
        Button search = (Button)findViewById(R.id.butts1);
@@ -46,26 +51,23 @@ public class SearchbookActivity extends Activity {
        			ano = "4";
        			String keyword = src.getText().toString();   
        			//async task to make http connection
-       			SearchBooktask sbtask = new SearchBooktask();
+       			SearchBooktask sbtask = new SearchBooktask(SearchbookActivity.this);
        			parameters1[0] = ano;
        			parameters1[1] = keyword;
        			sbtask.execute(parameters1); 
-       			books = new ArrayList();
+       			
        			try {
 					books = sbtask.get();
 					//if books are found matching the name ,a new page is played with natching book names
 					Intent intent = new Intent(v1.getContext(),SearchresultActivity.class);
 					Bundle b = new Bundle();
-					b.putStringArrayList("books", books);
+					b.putString("books", books);
+					b.putString("sessionid", sessionid);
 					intent.putExtras(b);
 					//intent.putExtra("message", str1);
 					//intent.putExtra("sesionid", uid);
-					startActivityForResult(intent,0);
-					it = books.iterator();
-					while(it.hasNext())
-					{
-						System.out.println(it.next());
-					}
+					startActivityForResult(intent,0);					
+					
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -80,25 +82,23 @@ public class SearchbookActivity extends Activity {
        		{
        			ano = "5";
        			String keyword = src.getText().toString();       			 
-       			SearchBooktask sbtask = new SearchBooktask();
+       			SearchBooktask sbtask = new SearchBooktask(SearchbookActivity.this);
        			parameters2[0] = ano;
        			parameters2[1] = keyword;
        			sbtask.execute(parameters2);
-       			books = new ArrayList();
+       			
        			try {
 					books = sbtask.get();
 					Intent intent = new Intent(v1.getContext(),SearchresultActivity.class);
 					Bundle b = new Bundle();
-					b.putStringArrayList("books", books);
+					b.putString("books", books);
+					b.putString("sessionid", sessionid);
 					intent.putExtras(b);
 					//intent.putExtra("message", str1);
 					//intent.putExtra("sesionid", uid);
 					startActivityForResult(intent,0);
-					it = books.iterator();
-					while(it.hasNext())
-					{
-						System.out.println(it.next());
-					}
+					
+					
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -111,25 +111,24 @@ public class SearchbookActivity extends Activity {
        		{
        			ano = "6";
        			String keyword = src.getText().toString();       			 
-       			SearchBooktask sbtask = new SearchBooktask();
+       			SearchBooktask sbtask = new SearchBooktask(SearchbookActivity.this);
        			parameters3[0] = ano;
        			parameters3[1] = keyword;
        			sbtask.execute(parameters3);
-       			books = new ArrayList();
+       			
        			try {
 					books = sbtask.get();
+					
 					Intent intent = new Intent(v1.getContext(),SearchresultActivity.class);
 					Bundle b = new Bundle();
-					b.putStringArrayList("books", books);
+					b.putString("books", books);
+					b.putString("sessionid", sessionid);
 					intent.putExtras(b);
 					//intent.putExtra("message", str1);
 					//intent.putExtra("sesionid", uid);
 					startActivityForResult(intent,0);
-					it = books.iterator();
-					while(it.hasNext())
-					{
-						System.out.println(it.next());
-					}
+					
+					
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
