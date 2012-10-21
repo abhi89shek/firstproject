@@ -345,7 +345,7 @@ public class Controllerservlet extends HttpServlet {
 					
 				}
 			}
-			if (ano == 7) 
+			if (ano == 7) //Checking the due date
 			{
 				
 				int sessionid = Integer.parseInt(request.getParameter("sessionid"));
