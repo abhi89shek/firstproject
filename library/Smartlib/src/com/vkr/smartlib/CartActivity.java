@@ -20,6 +20,8 @@ public class CartActivity extends Activity {
 	CheckBox chk;
 	int img;
 	String bname;
+	
+	// Adding books to the cart
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

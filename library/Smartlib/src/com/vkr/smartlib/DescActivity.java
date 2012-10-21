@@ -35,6 +35,8 @@ public class DescActivity extends Activity  {
       Bundle b=new Bundle();
       String [] booknameAndIsbn = new String[2];       
       
+     
+      // getting data from previous activity
       b=getIntent().getExtras();
       img=b.getInt("img");
       desc=b.getString("desc");
@@ -44,10 +46,7 @@ public class DescActivity extends Activity  {
       System.out.println(bname_isbn);
       subs = bname_isbn.substring(0, (bname_isbn.length()-1));
       System.out.println(subs);
-      /*booknameAndIsbn = subs.split("\\(");
-      final String bookname = booknameAndIsbn[0];
-      final String isbn = booknameAndIsbn[1];*/
-      
+     
      
       
       //pass the integer value from previous activity
@@ -62,7 +61,7 @@ public class DescActivity extends Activity  {
         
        popup=(Button) findViewById (R.id.btnde1);
         
-        
+        // Borrow the book
         popup.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
@@ -100,6 +99,8 @@ public class DescActivity extends Activity  {
         	
         });
         
+        
+        // Rating the books
         rb.setOnRatingBarChangeListener(new OnRatingBarChangeListener(){
 
 			public void onRatingChanged(RatingBar rb1, float rating, boolean fromuser) {
@@ -112,6 +113,8 @@ public class DescActivity extends Activity  {
         	
         });
         
+        
+        // Calling the cart function
         addtocart.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
@@ -123,7 +126,7 @@ public class DescActivity extends Activity  {
 			}
         });
     }
-        
+        // Alert box to add books into the cart
         public void spop(String message){
         	AlertDialog.Builder borrow= new AlertDialog.Builder(this);
 			borrow.setTitle("Success!");
@@ -172,7 +175,7 @@ public class DescActivity extends Activity  {
         
     }
 
-        
+        // Adding books to the cart
         public void scart(){
         	AlertDialog.Builder borrow= new AlertDialog.Builder(this);
 			borrow.setTitle("Successfully Added To cart");

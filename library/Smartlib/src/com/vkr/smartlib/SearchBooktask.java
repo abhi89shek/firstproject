@@ -36,7 +36,7 @@ public class SearchBooktask extends  AsyncTask<String[], Void, String >{
 		context = c;
 	}
 	
-	
+	// Progress bar with a message
 	protected void onPreExecute()
 	{
 		dialog = new ProgressDialog(context); // App - your main activity class

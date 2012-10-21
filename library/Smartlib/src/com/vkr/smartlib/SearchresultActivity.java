@@ -24,10 +24,7 @@ public class SearchresultActivity extends Activity implements OnItemClickListene
 	String sessionid = null;
 	String []booknameisbn = new String[100];
 	String []books1 = new String[100];
-	/*String[] books1=new String[]{
-    		"se","davinci","computernetworks1","computersecurity","database1","harrypotter",
-    		"javacompletereference","softwaretesting"
-    		} ; */
+	
 	int arrowi=R.drawable.arrow1;
    
     String isbn="b1234";
@@ -38,6 +35,7 @@ public class SearchresultActivity extends Activity implements OnItemClickListene
     String []blist2 = new String[100];
     String []blist3 = new String[100];
     
+    // Currently the book description was hardcoded , It will be moved into the Database in the next iteration
     String[] bookdesc=new String[]{
    		 "While in Paris on business, Harvard symbologist Robert Langdon receives an urgent late-night phone call: the elderly curator of the Louvre" +
    		 		" has been murdered inside the museum. Near the body, police have found a baffling cipher. While working to solve the enigmatic riddle, Langdon is stunned to discover it leads to a trail of clues hidden in the works of Da Vinci -- clues visible for all to see -- yet ingeniously disguised by the painter.","Software Engineering presents a broad perspective on software systems engineering, concentrating on widely-used techniques for developing large-scale software systems. This best-selling book covers a wide spectrum of software processes from initial requirements elicitation through design and development to system evolution. It supports students taking undergraduate and graduate courses in software engineering. The sixth edition has been restructured and updated, " +
@@ -58,26 +56,26 @@ public class SearchresultActivity extends Activity implements OnItemClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchresult);
         
-        Bundle extras = getIntent().getExtras(); //get the list of books from the calling activity
-        bookarray = extras.getString("books");
+        Bundle extras = getIntent().getExtras(); //get the list of books and ISBN from the calling activity
+        bookarray = extras.getString("books"); // store the list of books and ISBN in a String
         ArrayList<String[]> blist = new ArrayList<String[]>();
         System.out.println(bookarray);
-        sessionid = extras.getString("sessionid");
+        sessionid = extras.getString("sessionid"); // store the session ID
         Iterator it = null;
         Iterator it1 = null;
-        listitems = bookarray.split(":");
+        listitems = bookarray.split(":");  // split different books retrieved from the search and store in an array
+       
         for(int l =0; l<listitems.length ; l++)
         {
         	System.out.println(listitems[l]);
         }
         
         
-        //String name[] = listitems.split("\\(");
+        
        for(int i = 0;i<listitems.length;i++)
        {
-    	   blist.add(listitems[i].split("\\("));
-    	   //booknameisbn[i] = listitems[i].split("\\(");
-    	  // System.out.println(booknameisbn[i]);
+    	   blist.add(listitems[i].split("\\(")); // split each book name from the ISBN
+    	   
        }
        
        it = blist.iterator();
@@ -87,7 +85,7 @@ public class SearchresultActivity extends Activity implements OnItemClickListene
     	   blist1 = (String [])it.next();   
     	        
     	        blist2[z]  = blist1[0];
-    	        System.out.println("blist2"+ blist2[z]);
+    	        System.out.println("blist2"+ blist2[z]); // listing book names
     	        z++;
        }
        
@@ -97,25 +95,17 @@ public class SearchresultActivity extends Activity implements OnItemClickListene
     		   {
     			   blist1 = (String [])it1.next();
     			   blist3[m] = blist1[1];
-    			   System.out.println("blist3"+ blist3[m]);
+    			   System.out.println("blist3"+ blist3[m]); // listing ISBN
     			   m++;
     		   }
          
        
-       /*for(int j=0,k=0;j<booknameisbn.length && k<j ; j=j+2,k++)
-       {
-    	   books1[k] = booknameisbn[j];
-    	   System.out.println(books1[k]);
-       }*/
-      /* for(int g = 0;g <blist2[g]; g++)
-       {
-    	   System.out.println("hello "+blist2[g]);
-       }*/
+      
        ArrayList<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
        
        for(int t=0;blist2[t]!=null;t++)
        {
-     	  hmres[t]=getResources().getIdentifier(blist2[t],"drawable", "com.vkr.smartlib");
+     	  hmres[t]=getResources().getIdentifier(blist2[t],"drawable", "com.vkr.smartlib"); // fetching images based on the book names
      	  hmdesc[t]=bookdesc[t];
        }
       try{
@@ -136,7 +126,7 @@ public class SearchresultActivity extends Activity implements OnItemClickListene
             int[] to = { R.id.flag,R.id.tvbkn,R.id.isbn1,R.id.arrow};
       
            
-            SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.list1, from, to);
+            SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.list1, from, to); // creating list views
       
            ListView ls=(ListView) findViewById (R.id.listview)   ; 
            System.out.println("button");
