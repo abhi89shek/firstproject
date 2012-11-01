@@ -83,6 +83,24 @@ public class MenuActivity extends Activity {
     }
             
             );
+            Button studyButton = (Button)findViewById(R.id.butt2);
+            // event handler for search button
+            studyButton.setOnClickListener(new OnClickListener(){
+	        	public void onClick(View v1) {
+	        		// onclick pass the intent to the next activity
+	        		Intent intent = new Intent(v1.getContext(),Studyroom.class);
+	        		Bundle b = new Bundle();
+					b.putString("sessionid",sessionid);					
+					intent.putExtras(b);
+	        		startActivityForResult(intent,0);
+	        		
+	        		
+	        		
+	        	}
+        
+    }
+            
+            );
     }
 
     @Override

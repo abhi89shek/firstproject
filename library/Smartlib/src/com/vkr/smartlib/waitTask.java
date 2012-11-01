@@ -18,12 +18,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-public class BrrowTask extends AsyncTask<String[], Void, String > {
+public class waitTask extends AsyncTask<String[], Void, String > {
 
 	private Context context;
 	private ProgressDialog dialog;
 	
-	public BrrowTask(Context c)
+	public waitTask(Context c)
 	{
 		super();
 		context = c;

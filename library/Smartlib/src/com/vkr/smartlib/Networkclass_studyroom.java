@@ -18,13 +18,13 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-public class Networkclass_nuser extends  AsyncTask<String[], Void, StringBuffer > {
+public class Networkclass_studyroom extends  AsyncTask<String[], Void, StringBuffer > {
 
 	
 	private Context context;
 	private ProgressDialog dialog;
 	
-	public Networkclass_nuser(Context c)
+	public Networkclass_studyroom(Context c)
 	{
 		super();
 		context = c;
@@ -34,7 +34,7 @@ public class Networkclass_nuser extends  AsyncTask<String[], Void, StringBuffer 
 	protected void onPreExecute()
 	{
 		dialog = new ProgressDialog(context); // App - your main activity class
-        dialog.setMessage("Updating details ...Please, wait...");
+        dialog.setMessage("checking availability ...Please, wait...");
         dialog.show();
 	}
 	 protected StringBuffer doInBackground(String[]... params) {
@@ -42,13 +42,11 @@ public class Networkclass_nuser extends  AsyncTask<String[], Void, StringBuffer 
 	    	String [] temp = new String[20] ;
 	    	temp = params[0];			// get the parameters from the main thread
 	    	ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-	    	nameValuePairs.add(new BasicNameValuePair("tno", temp[0]));	//parameters are added to an arraylist
-			nameValuePairs.add(new BasicNameValuePair("fullname", temp[1]));
-			nameValuePairs.add(new BasicNameValuePair("email", temp[2]));
-			nameValuePairs.add(new BasicNameValuePair("address", temp[3]));
-			nameValuePairs.add(new BasicNameValuePair("phno", temp[4]));
-			nameValuePairs.add(new BasicNameValuePair("username", temp[5]));
-			nameValuePairs.add(new BasicNameValuePair("password", temp[6]));
+	    	nameValuePairs.add(new BasicNameValuePair("tno", temp[0]));
+	    	nameValuePairs.add(new BasicNameValuePair("sessionid", temp[1]));
+	    	nameValuePairs.add(new BasicNameValuePair("myDate", temp[2]));	//parameters are added to an arraylist
+			nameValuePairs.add(new BasicNameValuePair("myTime", temp[3]));
+
 	    	try {
 		        HttpClient httpClient = new DefaultHttpClient();
 		        System.out.println("button3");
@@ -83,23 +81,17 @@ public class Networkclass_nuser extends  AsyncTask<String[], Void, StringBuffer 
 		                	    }
 	    	
 	    	   		
-	    		
-	    	}
-	    protected void onPostExecute(StringBuffer result) {
-	    	
-	    	dialog.dismiss();
-	    	 returnValue(result);
-	    	 
-	    }
-			
-	    protected StringBuffer returnValue(StringBuffer strb) {
-	    	
-	    	return strb;
-		}
+	 			}
 
-		
-
-	}	
+protected void onPostExecute(StringBuffer result) {
 	
+	dialog.dismiss();
+	 returnValue(result);     //return the result to the main thread
+	 
+}
 	
-
+protected StringBuffer returnValue(StringBuffer strb) {
+	
+	return strb;
+}
+}

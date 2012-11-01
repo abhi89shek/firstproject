@@ -18,17 +18,18 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-public class BrrowTask extends AsyncTask<String[], Void, String > {
+public class CartTask  extends AsyncTask<String[], Void, String >  {
+
 
 	private Context context;
 	private ProgressDialog dialog;
 	
-	public BrrowTask(Context c)
+	
+	public CartTask(Context c)
 	{
 		super();
 		context = c;
 	}
-	
 	
 	protected void onPreExecute()
 	{
@@ -36,7 +37,7 @@ public class BrrowTask extends AsyncTask<String[], Void, String > {
         dialog.setMessage("Updating details ...Please, wait...");
         dialog.show();
 	}
-	@Override
+	
 	protected String doInBackground(String[]... params) {
 		// TODO Auto-generated method stub
 		
@@ -46,11 +47,10 @@ public class BrrowTask extends AsyncTask<String[], Void, String > {
 		 temp = params[0];
 		 
 		 ArrayList<NameValuePair> alist = new ArrayList<NameValuePair>();
-		 alist.add(new BasicNameValuePair("bname",temp[0]));
-		 alist.add(new BasicNameValuePair("mid", temp[1]));
+		 alist.add(new BasicNameValuePair("tno",temp[0]));
+		 alist.add(new BasicNameValuePair("sessionid",temp[1]));
 		 alist.add(new BasicNameValuePair("isbn", temp[2]));
-		 alist.add(new BasicNameValuePair("tno", temp[3]));
-		
+		 
 		 
 		 try
 		 {
@@ -107,7 +107,6 @@ public class BrrowTask extends AsyncTask<String[], Void, String > {
 
 	
 
+
+
 }
-
-
-

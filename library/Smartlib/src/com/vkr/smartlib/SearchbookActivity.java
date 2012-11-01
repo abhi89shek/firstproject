@@ -6,6 +6,8 @@ import java.util.concurrent.ExecutionException;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -58,6 +60,27 @@ public class SearchbookActivity extends Activity {
        			
        			try {
 					books = sbtask.get();
+					if(books == "N")
+					{
+						AlertDialog.Builder alertbox = new AlertDialog.Builder(v1.getContext());
+						alertbox.setMessage("Sorry. Book not available");
+
+				        // add a neutral button to the alert box and assign a click listener
+				        alertbox.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+
+				            // click listener on the alert box
+				            public void onClick(DialogInterface arg0, int arg1) {
+				                // the button was clicked
+				            	
+				            	
+
+				            }
+				        });
+
+				        // show it
+				        alertbox.show();
+						
+					}
 					//if books are found matching the name ,a new page is played with natching book names
 					Intent intent = new Intent(v1.getContext(),SearchresultActivity.class);
 					Bundle b = new Bundle();
@@ -89,6 +112,27 @@ public class SearchbookActivity extends Activity {
        			
        			try {
 					books = sbtask.get();
+					if(books == "N")
+					{
+						AlertDialog.Builder alertbox = new AlertDialog.Builder(v1.getContext());
+						alertbox.setMessage("Sorry. Book not available");
+
+				        // add a neutral button to the alert box and assign a click listener
+				        alertbox.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+
+				            // click listener on the alert box
+				            public void onClick(DialogInterface arg0, int arg1) {
+				                // the button was clicked
+				            	
+				            	
+
+				            }
+				        });
+
+				        // show it
+				        alertbox.show();
+						
+					}
 					Intent intent = new Intent(v1.getContext(),SearchresultActivity.class);
 					Bundle b = new Bundle();
 					b.putString("books", books);
@@ -118,7 +162,27 @@ public class SearchbookActivity extends Activity {
        			
        			try {
 					books = sbtask.get();
-					
+					if(books == "N")
+					{
+						AlertDialog.Builder alertbox = new AlertDialog.Builder(v1.getContext());
+						alertbox.setMessage("Sorry. Book not available");
+
+				        // add a neutral button to the alert box and assign a click listener
+				        alertbox.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+
+				            // click listener on the alert box
+				            public void onClick(DialogInterface arg0, int arg1) {
+				                // the button was clicked
+				            	
+				            	
+
+				            }
+				        });
+
+				        // show it
+				        alertbox.show();
+						
+					}
 					Intent intent = new Intent(v1.getContext(),SearchresultActivity.class);
 					Bundle b = new Bundle();
 					b.putString("books", books);

@@ -45,11 +45,12 @@
         <activity
             android:name=".CartActivity"
             android:label="@string/title_activity_cart" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
+        </activity>
+        <activity
+            android:name=".Studyroom"
+            android:label="@string/title_activity_cart" >
+            
         </activity>
     </application>
 
