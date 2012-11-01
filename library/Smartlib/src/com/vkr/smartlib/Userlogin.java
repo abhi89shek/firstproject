@@ -248,7 +248,7 @@ public class Userlogin extends Activity {
 							params2[4] = phone_num;
 							params2[5] = usname1;
 							params2[6] = npass;
-							params2[7] = cpass;
+							//params2[7] = cpass;
 							
 		        	  
 		        		  
