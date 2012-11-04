@@ -15,12 +15,15 @@ import android.widget.TextView;
 
 public class MenuActivity extends Activity {
 
+	String ano = null;
+	String []params1 = new String[5];
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
      // get the values from the calling activity via an intent
         String tno = "7";
+        
         Bundle extras = getIntent().getExtras();   
             String [] params= new String[3]; 
             String message = extras.getString("message"); //get the message from the calling activity
@@ -101,8 +104,34 @@ public class MenuActivity extends Activity {
     }
             
             );
+            Button cartButton = (Button)findViewById(R.id.cartbutton);
+            cartButton.setOnClickListener(new OnClickListener(){
+	        	public void onClick(View v1) {
+	        		// onclick pass the intent to the next activity
+	        		CartReadTask cartRead = new CartReadTask(MenuActivity.this);
+					ano = "14";
+					params1[0] = ano;
+					params1[1] = sessionid;
+					cartRead.execute(params1);
+					try
+					{
+						String carts = cartRead.get();
+					
+					Intent in=new Intent();
+					in.setClass(getBaseContext(),CartActivity.class);
+					Bundle b=new Bundle();
+					b.putString("cartitems", carts);
+					//b.putInt("img", img);
+					in.putExtras(b);
+					startActivity(in);
+					}catch(Exception e)
+					{
+						e.printStackTrace();
+					}
+            
     }
-
+            });
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_menu, menu);

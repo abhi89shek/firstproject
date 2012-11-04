@@ -16,5 +16,7 @@
     <string name="title_activity_desc">MainActivity</string>
     <string name="title_activity_cart">MainActivity</string>
     <string name="desc">library</string>
+    <string name="title_activity_manage">ManageActivity</string>
+    <string name="title_activity_viewreport">ViewreportActivity</string>
 
 </resources>
