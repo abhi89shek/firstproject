@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000" >
+
+    <TextView
+        android:id="@+id/tvde1"
+        android:layout_width="240dp"
+        android:layout_height="210dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="" />
+
+    <ImageView
+        android:id="@+id/imde1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="TODO"
+        tools:ignore="ContentDescription,HardcodedText" />
+     <TextView 
+        android:id="@+id/tvbndesc"
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imde1"
+        android:textColor="#FFFFFF"
+        ></TextView>
+    <TextView 
+        android:id="@+id/tvisbndesc"
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvbndesc"
+        android:textColor="#FFFFFF"
+        ></TextView>
+    
+
+    <RatingBar
+        android:id="@+id/rbde"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="65dp"
+        android:clickable="true"
+        android:max="5"
+        android:numStars="5" />
+
+    <Button
+        android:id="@+id/btnde1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="19dp"
+        android:layout_marginLeft="25dp"
+        android:text="Borrow"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnde2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnde1"
+        android:layout_alignBottom="@+id/btnde1"
+        android:layout_alignRight="@+id/rbde"
+        android:text="Add To Cart"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/rbtv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnde2"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/rbde"
+        android:layout_toRightOf="@+id/rbde"
+        android:inputType="numberDecimal"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#FFD700"
+        android:textSize="15dp"
+        tools:ignore="TextViewEdits" />
+
+</RelativeLayout>
