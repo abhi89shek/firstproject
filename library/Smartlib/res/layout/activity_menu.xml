@@ -107,7 +107,23 @@
         android:text="E-Books"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    <Button
+        android:id="@+id/cartbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv5"
+        android:layout_alignRight="@+id/butt3"
+        android:layout_below="@+id/tv5"
+        android:layout_marginTop="46dp"
+        android:background="@drawable/android" >
+</Button>
 
-
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cartbutton"
+        android:layout_below="@+id/cartbutton"
+        android:text="View Cart" />
 
 </RelativeLayout>

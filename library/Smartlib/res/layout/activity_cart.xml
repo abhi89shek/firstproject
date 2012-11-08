@@ -3,75 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/tvc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CART:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/tvci"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/listViewcart"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/tvc"
-        android:layout_marginLeft="22dp"
-        android:layout_marginTop="15dp"
-        android:text="Cart Items"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp" >
+    </ListView>
 
-    <TextView
-        android:id="@+id/tvcb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvci"
-        android:layout_alignBottom="@+id/tvci"
-        android:layout_marginLeft="39dp"
-        android:layout_toRightOf="@+id/tvci"
-        android:text="Bookcoverpage"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/tvci"
-        android:layout_marginTop="16dp" >
-
-        <TableLayout
-            android:id="@+id/table"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-            <TableRow 
-                android:id="@+id/tvr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                >
-                <CheckBox 
-                android:id="@+id/chkbox1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-            
-            <TextView 
-                android:id="@+id/tvbname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-                
-            </TextView>
-            <ImageView 
-                android:id="@+id/imgcart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/desc"
-              
-                ></ImageView>
-            </TableRow>
-            
-                
-                       </TableLayout>
-    </ScrollView>
+    
 
 </RelativeLayout>        
         

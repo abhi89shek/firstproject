@@ -1,0 +1,136 @@
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/lib4" >
+"
+
+        <Button
+            android:id="@+id/button100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="#87CEFA"
+            android:text="ADD"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/button300"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="17dp"
+            android:background="#87CEFA"
+            android:text="UPDATE"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button100"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="47dp"
+            android:text="Book Name"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/editText400"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView4"
+            android:layout_alignBottom="@+id/textView4"
+            android:layout_alignParentRight="true"
+            android:cursorVisible="true"
+            android:ems="10"
+            android:hint="Enter the book name"
+            android:inputType="text"
+            android:shadowColor="#FFFFFF"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/button200"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editText400"
+            android:layout_centerVertical="true"
+            android:background="#87CEFA"
+            android:text="DELETE"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/editText300"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editText400"
+            android:layout_alignParentRight="true"
+            android:cursorVisible="true"
+            android:ems="10"
+            android:hint="Enter no of copies"
+            android:inputType="number"
+            android:shadowColor="#FFFFFF"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editText300"
+            android:layout_alignBottom="@+id/editText300"
+            android:layout_alignParentLeft="true"
+            android:text="Book Copies"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editText300"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="16dp"
+            android:text="Book Author"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/editText200"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView2"
+            android:layout_alignBottom="@+id/textView2"
+            android:layout_alignParentRight="true"
+            android:cursorVisible="true"
+            android:ems="10"
+            android:hint="Enter the author name"
+            android:inputType="textPersonName"
+            android:shadowColor="#FFFFFF"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/editText100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textView2"
+            android:layout_alignParentRight="true"
+            android:cursorVisible="true"
+            android:ems="10"
+            android:hint="Enter ISBN"
+            android:inputType="number"
+            android:shadowColor="#FFFFFF"
+            android:textColor="#FFFFFF" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editText200"
+            android:layout_alignParentLeft="true"
+            android:text="BISBN"
+            android:textColor="#FFFFFF" />
+
+    </RelativeLayout>
+                    

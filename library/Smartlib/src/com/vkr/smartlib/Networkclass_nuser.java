@@ -47,8 +47,8 @@ public class Networkclass_nuser extends  AsyncTask<String[], Void, StringBuffer 
 			nameValuePairs.add(new BasicNameValuePair("email", temp[2]));
 			nameValuePairs.add(new BasicNameValuePair("address", temp[3]));
 			nameValuePairs.add(new BasicNameValuePair("phno", temp[4]));
-			nameValuePairs.add(new BasicNameValuePair("password", temp[5]));
-			//nameValuePairs.add(new BasicNameValuePair("confirmpassword", temp[6]));
+			nameValuePairs.add(new BasicNameValuePair("username", temp[5]));
+			nameValuePairs.add(new BasicNameValuePair("password", temp[6]));
 	    	try {
 		        HttpClient httpClient = new DefaultHttpClient();
 		        System.out.println("button3");

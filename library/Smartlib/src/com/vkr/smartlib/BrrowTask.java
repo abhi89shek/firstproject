@@ -29,7 +29,7 @@ public class BrrowTask extends AsyncTask<String[], Void, String > {
 		context = c;
 	}
 	
-	//progress bar configuration
+	
 	protected void onPreExecute()
 	{
 		dialog = new ProgressDialog(context); // App - your main activity class
@@ -55,7 +55,7 @@ public class BrrowTask extends AsyncTask<String[], Void, String > {
 		 try
 		 {
 			 HttpClient httpClient = new DefaultHttpClient();
-		       //URL to access the server
+			 
 			 HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/webapp/Controllerservlet");
 			 
 			 httpPost.setEntity(new UrlEncodedFormEntity(alist));
