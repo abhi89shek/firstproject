@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="start" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/computernetworks1" />
+    <TextView 
+        android:id="@+id/tvbnshelf"
+        android:layout_width="2dp"
+        android:layout_height="2dp"
+        android:layout_below="@+id/imageView1"
+        android:textColor="#000000"
+        ></TextView>
+    <TextView 
+        android:id="@+id/tvisbnshelf"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tvbnshelf"
+        android:textColor="#000000"
+        ></TextView>
+
+   
+</RelativeLayout>
