@@ -3,6 +3,7 @@ package com.vkr.smartlib;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -49,15 +50,23 @@ public class Networkclass extends  AsyncTask<String[], Void, StringBuffer >{
 		nameValuePairs.add(new BasicNameValuePair("pass", temp[2])); 
     	try {
 	        HttpClient httpClient = new DefaultHttpClient();	        
-	        HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/webapp/Controllerservlet");//the webserver address goes in here	        
-	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));	        
-	        HttpResponse response = httpClient.execute(httpPost);	 //connect to the server via httppost       
-	        HttpEntity entity = response.getEntity();	//get the response from the server        
-	        InputStream is = entity.getContent();  	   // store it as an inputstream      
+	        HttpPost httpPost = new HttpPost("http://192.168.50.1:8080/webapp/Controllerservlet");//the webserver address goes in here	
+	        Log.i("tag","i should be here1");
+	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+	        Log.i("tag","i should be here2");
+	        HttpResponse response = httpClient.execute(httpPost);
+	        Log.i("tag","i should be here3");//connect to the server via httppost       
+	        HttpEntity entity = response.getEntity();
+	        Log.i("tag","i should be here4");//get the response from the server        
+	        InputStream is = entity.getContent();  
+	        Log.i("tag","i should be here5");// store it as an inputstream      
 	        BufferedReader reader = new BufferedReader(
                     new InputStreamReader(is, "UTF-8"));
+	        Log.i("tag","i should be here6");
 	        StringBuffer responseString = new StringBuffer("");
+	        Log.i("tag","i should be here7");
             String line;
+            Log.i("tag","i should be here8");
             while ((line = reader.readLine()) != null) {
                 responseString.append(line);              //append the result to string buffer
 	       // System.out.println(responseString);
@@ -78,14 +87,14 @@ public class Networkclass extends  AsyncTask<String[], Void, StringBuffer >{
     		
     	}
     protected void onPostExecute(StringBuffer result) {
-    	
+    	Log.i("tag","i should be here9");
     	dialog.dismiss();
     	 returnValue(result);     //return the result to the main thread
     	 
     }
 		
     protected StringBuffer returnValue(StringBuffer strb) {
-    	
+    	Log.i("tag","i should be here10");
     	return strb;
 	}
 

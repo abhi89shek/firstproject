@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -66,6 +67,7 @@ public class Userlogin extends Activity {
 	                spec3.setContent(R.id.tab3);
 	                spec3.setIndicator("Admin");
 	                th.addTab(spec3);
+	                Log.i("tag","i should be here 1st");
 
 	        username=(EditText) findViewById (R.id.editText1);           //getting the textbox values entered by the user on the mai page
 	       password=(EditText) findViewById  (R.id.editText2);			// id attribute is defined in the xml file
@@ -81,12 +83,13 @@ public class Userlogin extends Activity {
 							//Toast.makeText(this, "hello", 1000).show();
 							uid=username.getText().toString();
 					         pass=password.getText().toString();
-							System.out.println("button");
+							//System.out.println("button");
 							tno = "1";   // a unique identifier to differentiate the tabs on the main screen
 							//check if the user has entered the credentials.display error if not.
+							 Log.i("tag","i should be here 2nd");
 						if(uid.equals("") || pass.equals(""))
 						{
-							Toast.makeText(getBaseContext(), "oops!you have not provided credentials", 10).show();
+							Toast.makeText(getBaseContext(), "oops!you have not provided credentials", 1000000).show();
 						}
 						else 
 						{
@@ -95,13 +98,17 @@ public class Userlogin extends Activity {
 							params[0] = tno;
 							params[1] = uid;
 							params[2] = pass;
-							Networkclass netclass = new Networkclass(Userlogin.this); // a new thread is created for 
+							Networkclass netclass = new Networkclass(Userlogin.this);
+							 Log.i("tag","i should be here middle");// a new thread is created for 
 																		// making the http connection to server
 							//StringBuffer responseString = new StringBuffer("");
 							  netclass.execute(params);
+							  Log.i("tag","i should be here 3rd");
 							  try {
 								StringBuffer str = netclass.get();
+								 Log.i("tag","i should be here 4th");
 								String str1 = str.toString();
+								 Log.i("tag","i should be here 5th");
 								//check if the user has provided the valid credentials
 								if(str1.equals("N"))
 								{
