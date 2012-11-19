@@ -94,7 +94,7 @@ public class LoginpageActivity extends Activity {
 								else
 								{
 								//if credentials are correct a new activity with a welcome page is created
-								Intent intent = new Intent(v1.getContext(), Schedulepage.class);
+								Intent intent = new Intent(v1.getContext(), SelectionActivity.class);
 								Bundle b = new Bundle();
 								b.putString("message",str1);
 								b.putString("sessionid", userId);

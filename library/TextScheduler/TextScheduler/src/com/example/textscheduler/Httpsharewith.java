@@ -49,7 +49,8 @@ public class Httpsharewith extends  AsyncTask<String[], Void, StringBuffer >{
 		nameValuePairs.add(new BasicNameValuePair("contactName", temp[2]));
 		nameValuePairs.add(new BasicNameValuePair("Sharewith", temp[3]));
 		nameValuePairs.add(new BasicNameValuePair("date", temp[4]));
-		nameValuePairs.add(new BasicNameValuePair("seenFlag", temp[5]));
+		nameValuePairs.add(new BasicNameValuePair("event", temp[5]));
+		
 
 		
 		

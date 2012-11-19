@@ -45,7 +45,7 @@ public class Notificationtask extends  AsyncTask<String[], Void, StringBuffer >{
     	temp = params[0];              // get the parameters from the main thread
     	ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("activityNo", temp[0])); //parameters are added to an arraylist
-		nameValuePairs.add(new BasicNameValuePair("myUserName", temp[1]));
+		nameValuePairs.add(new BasicNameValuePair("userName", temp[1]));
 		
 
 		
