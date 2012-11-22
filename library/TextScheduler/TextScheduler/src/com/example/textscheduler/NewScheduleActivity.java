@@ -36,6 +36,7 @@ public class NewScheduleActivity extends Activity implements OnClickListener{
 	TextView tvContact;
 	Spinner spnOccasion;
 	
+	String newdate = null;
 	private int year;
 	private int month;
 	private int day;
@@ -46,7 +47,13 @@ public class NewScheduleActivity extends Activity implements OnClickListener{
 	private String fullSchedule = new String();
 	private String name = new String();
 	private String occasion = new String();
+	private String typedMsg = null;
+	private String userid = null;
 	int PICK_CONTACT;
+	
+	 private Setscheduletext scheduletext = null;
+	
+	Calendar cal = Calendar.getInstance();
 	
 	static final int DATE_DIALOG_ID = 999;
 	static final int TIME_DIALOG_ID = 998;
@@ -55,6 +62,13 @@ public class NewScheduleActivity extends Activity implements OnClickListener{
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_schedule);
+		
+		Bundle extras = getIntent().getExtras();
+        String message = extras.getString("message");
+        userid = extras.getString("sessionid");
+        
+		scheduletext = new Setscheduletext(this);
+		scheduletext.doBindService();
 		
 		composeMsg = (EditText) findViewById (R.id.composeMessage);
 		buttonSelectContact = (Button)findViewById (R.id.buttonPickContact);
@@ -89,9 +103,23 @@ public class NewScheduleActivity extends Activity implements OnClickListener{
 				break;		
 				
 			case R.id.buttonSave:
-				String typedMsg = composeMsg.getText().toString();				
+				 typedMsg = composeMsg.getText().toString();				
 				
 				occasion = String.valueOf(spnOccasion.getSelectedItem());
+				System.out.println(typedMsg);
+				System.out.println(occasion);
+				System.out.println(name);
+				System.out.println(year);
+				System.out.println(month+1);
+				System.out.println(day);
+				System.out.println(hour);
+				System.out.println(minute);
+				try{
+				scheduletext.setAlarmForNotification(year,month+1,day,hour,minute,typedMsg,occasion,name);
+				}catch(Exception e)
+				{
+					e.printStackTrace();
+				}
 				
 				fullSchedule += ("Contact: " + name + "\n");
 				fullSchedule += ("Occasion: " + occasion + "\n");
@@ -108,10 +136,17 @@ public class NewScheduleActivity extends Activity implements OnClickListener{
 				.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog,int id) {
 						//NewScheduleActivity.this.finish();
+						//String date1 = date.toString();
+						//System.out.println(date1);
+						
 						Intent shareIntent = new Intent(getBaseContext(), ShareWith.class);
 						
-						//intent.putExtra("message", str1);
-						//intent.putExtra("sesionid", uid);
+						Bundle share = new Bundle();
+						share.putString("sendTo", name);
+						share.putString("occasion", occasion);
+						share.putString("date", newdate);
+						share.putString("sender", userid);
+						shareIntent.putExtras(share);						
 						startActivityForResult(shareIntent,0);
 					}
 				  })
@@ -180,9 +215,11 @@ public class NewScheduleActivity extends Activity implements OnClickListener{
 			year = selectedYear;
 			month = selectedMonth;
 			day = selectedDay;
-			date.append(month + 1).append("-").append(day).append("-").append(year).append(" ");
+			date.append(year).append("-").append(month+1).append("-").append(day);
+			newdate = year+"-"+(month+1)+"-"+day+"";
 			
 			tvDate.setText(date);
+			
 			date.setLength(0);
 			
 		}
@@ -195,6 +232,7 @@ public class NewScheduleActivity extends Activity implements OnClickListener{
 			time.append(pad(hour)).append(":").append(pad(minute));
 			
 			tvTime.setText(time);
+			
 			time.setLength(0);
 		}
 	};
@@ -205,4 +243,11 @@ public class NewScheduleActivity extends Activity implements OnClickListener{
 		else
 		   return "0" + String.valueOf(c);
 	}
+	@Override
+    protected void onStop() {
+        
+        if(scheduletext != null)
+        	scheduletext.doUnbindService();
+        super.onStop();
+    }
 }

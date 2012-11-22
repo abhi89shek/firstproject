@@ -17,5 +17,6 @@
 
     <string name="title_activity_selection">SelectionActivity</string>
     <string name="title_activity_share_with">ShareWith</string>
+    <string name="title_activity_notificationscreen">Notificationscreen</string>
 
 </resources>

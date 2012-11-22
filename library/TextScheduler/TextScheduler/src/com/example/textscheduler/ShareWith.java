@@ -1,5 +1,7 @@
 package com.example.textscheduler;
 
+import java.util.concurrent.ExecutionException;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -8,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,6 +23,12 @@ public class ShareWith extends Activity
 	private String emailAddress = null;
 	private String contactId = null;
 	private int res=0;
+	private String []params = new String[7];
+	private String sendTo = null;
+	private String sender = null;
+	private String occasion = null;
+	private String sdate = null;
+			
 	
 	protected static final int PICK_CONTACT = 1;
 	private EditText usernameText;
@@ -27,6 +36,11 @@ public class ShareWith extends Activity
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
+    	Bundle share = getIntent().getExtras();
+    	sendTo = share.getString("sendTo");
+		occasion = share.getString("occasion");
+		sdate = share.getString("date");
+		sender = share.getString("sender");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_with);
         
@@ -89,6 +103,31 @@ public class ShareWith extends Activity
     	  {
     	     public void onClick(DialogInterface dialog, int which) 
     	     {
+    	    	 String activityNo = "5";
+    	    	 Httpsharewith shareWithUser = new Httpsharewith(ShareWith.this);
+    	    	 params[0] = activityNo;
+    	    	 params[1] = sender;
+    	    	 params[2] = sendTo;
+    	    	 params[3] = emailAddress;
+    	    	 params[4] = sdate;
+    	    	 params[5] = occasion;
+    	    	 shareWithUser.execute(params);
+				  Log.i("tag","i should be here 3rd");
+				  
+					StringBuffer str = null;
+					try {
+						str = shareWithUser.get();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ExecutionException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					 Log.i("tag","i should be here 4th");
+					String str1 = str.toString();
+					 Log.i("tag","i should be here 5th");
+    	    	 
     	        moreShareDialog= new AlertDialog.Builder(ShareWith.this);
 	    	    moreShareDialog.setTitle("shared");
 	    	    moreShareDialog.setMessage("Event shared. Do you want to share with more friends?");

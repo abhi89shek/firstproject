@@ -20,7 +20,8 @@ public final class R {
         public static final int schedule_256=0x7f020003;
     }
     public static final class id {
-        public static final int addemailid=0x7f080020;
+        public static final int RelativeLayout1=0x7f080022;
+        public static final int addemailid=0x7f080021;
         public static final int button1=0x7f080007;
         public static final int button3=0x7f080011;
         public static final int buttonCancel=0x7f080012;
@@ -28,15 +29,17 @@ public final class R {
         public static final int buttonPickDate=0x7f08001a;
         public static final int buttonPickTime=0x7f080013;
         public static final int buttonSave=0x7f080014;
-        public static final int button_new_schedule=0x7f08001d;
-        public static final int button_view_notifications=0x7f08001e;
+        public static final int button_new_schedule=0x7f08001e;
+        public static final int button_view_notifications=0x7f08001f;
         public static final int composeMessage=0x7f080015;
         public static final int editText1=0x7f080004;
         public static final int editText2=0x7f080006;
         public static final int editText3=0x7f08000a;
         public static final int editText6=0x7f08000e;
         public static final int editText8=0x7f080010;
-        public static final int menu_settings=0x7f080021;
+        public static final int listView1=0x7f08001d;
+        public static final int menu_settings=0x7f080024;
+        public static final int notification=0x7f080023;
         public static final int spinnerOccasion=0x7f080017;
         public static final int tab1=0x7f080001;
         public static final int tab2=0x7f080008;
@@ -44,7 +47,7 @@ public final class R {
         public static final int textView1=0x7f080003;
         public static final int textView12=0x7f080002;
         public static final int textView2=0x7f080005;
-        public static final int textView3=0x7f08001f;
+        public static final int textView3=0x7f080020;
         public static final int textView6=0x7f08000d;
         public static final int textView8=0x7f08000f;
         public static final int textViewTitle=0x7f080018;
@@ -58,15 +61,18 @@ public final class R {
     public static final class layout {
         public static final int activity_loginpage=0x7f030000;
         public static final int activity_new_schedule=0x7f030001;
-        public static final int activity_selection=0x7f030002;
-        public static final int activity_share_with=0x7f030003;
+        public static final int activity_notificationscreen=0x7f030002;
+        public static final int activity_selection=0x7f030003;
+        public static final int activity_share_with=0x7f030004;
+        public static final int notificationlist=0x7f030005;
     }
     public static final class menu {
         public static final int activity_loginpage=0x7f070000;
         public static final int activity_new_schedule=0x7f070001;
-        public static final int activity_schedulepage=0x7f070002;
-        public static final int activity_selection=0x7f070003;
-        public static final int activity_share_with=0x7f070004;
+        public static final int activity_notificationscreen=0x7f070002;
+        public static final int activity_schedulepage=0x7f070003;
+        public static final int activity_selection=0x7f070004;
+        public static final int activity_share_with=0x7f070005;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
@@ -75,6 +81,7 @@ public final class R {
         public static final int occasion_prompt=0x7f040006;
         public static final int title_activity_loginpage=0x7f040003;
         public static final int title_activity_new_schedule=0x7f040005;
+        public static final int title_activity_notificationscreen=0x7f040009;
         public static final int title_activity_schedulepage=0x7f040004;
         public static final int title_activity_selection=0x7f040007;
         public static final int title_activity_share_with=0x7f040008;

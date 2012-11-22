@@ -180,19 +180,22 @@ public class Controller extends HttpServlet {
 		if(activityNo == 3)
 		{
 			String username = request.getParameter("userName");
+			System.out.println(username);
 			String notificationQuery = "select 1 from textuser where shareWithName = ? and seenFlag = 'N'";
 			PreparedStatement ps3 = null;
 			Connection conn = new DatabaseConn().getDbconnection();
 			try {
 				ps3 = conn.prepareStatement(notificationQuery);
+				ps3.setString(1, username);
 				ResultSet notiResult = ps3.executeQuery();
 				if(notiResult.next())
 				{
-					out.println("Hi! You have notifications pending.Please check");
+					System.out.println("inside controller noti");
+					out.println("Y");
 				}
 				else
 				{
-					
+					out.println("N");
 				}
 				
 			} catch (SQLException e) {
@@ -202,27 +205,61 @@ public class Controller extends HttpServlet {
 		}
 		if(activityNo == 4)
 		{
+			String sender = null;
+			String event = null;
+			String sendTo = null;
+			String eventDate = null;
 			String username = request.getParameter("userName");
-			String notificationResult = "select senderName,event,sendToName,Sdate from textuser where shareWithName = ? and seenFlag = 'N'";
+			ResultSet notiResults = null;
+			String notificationResult = "select username,event,sendToName,Sdate from textuser where shareWithName = ? and seenFlag = 'N'";
 			PreparedStatement ps4 = null;
 			PreparedStatement updateStat = null;
 			Connection conn = new DatabaseConn().getDbconnection();
 			try {
 				ps4 = conn.prepareStatement(notificationResult);
-				ResultSet notiResults = ps4.executeQuery();
+				ps4.setString(1,username);
+				 notiResults = ps4.executeQuery();
 				while(notiResults.next())
 				{
-					notiStr = notiStr + notiResults.getString(1)+"wants you to attend an event: "+notiResults.getString(2)+" of "+notiResults.getString(3)+" on "+notiResults.getDate(4).toString() + ":";
-				}
+					sender = notiResults.getString(1);
+					event =  notiResults.getString(2);
+					sendTo = notiResults.getString(3);
+					eventDate = notiResults.getDate(4).toString();
+					notiStr = notiStr + sender+"wants you to attend an event: "+event+" of "+sendTo+" on "+eventDate + ":";
+					String updateFlag = "update textuser set seenFlag = 'Y' where seenFlag = 'N' and event = ? and senderName = ? and Sdate =?";
+					updateStat = conn.prepareStatement(updateFlag);
+					updateStat.setString(1, event);
+					updateStat.setString(2, sender);
+					updateStat.setString(3, eventDate);
+					
+					int no_of_rows = updateStat.executeUpdate();
+				}				
 				String finalNotiStr = notiStr.substring(0, (notiStr.length()-1));				
-				String updateFlag = "update textuser set seenFlag = 'Y' where seenFLag = 'N' and event ="+notiResults.getString(2)+" and senderName ="+notiResults.getString(1)+" and Sdate ="+notiResults.getDate(4).toString() +"";
-				updateStat = conn.prepareStatement(updateFlag);
-				int no_of_rows = updateStat.executeUpdate();
+				
 				out.println(finalNotiStr);
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					if(notiResults!=null)
+					{
+						notiResults.close();
+					}
+					if(conn!=null)
+					{
+						conn.close();
+					}
+					
+					
+				}catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		if(activityNo == 5)
@@ -230,24 +267,32 @@ public class Controller extends HttpServlet {
 			String username = request.getParameter("myUserName");
 			String sendTo = request.getParameter("contactName");
 			String sdate = request.getParameter("date");
+			System.out.println(sdate);
 			String shareWith = request.getParameter("Sharewith");
 			String event = request.getParameter("event");
 			
 			
-			String insertShare = "insert into textuser (senderName,sendToName,shareWithName,event,Sdate,seenFlag) values (?,?,?,?,?,'N')";
-			;
+			String insertShare = "insert into textuser (username,senderName,sendToName,shareWithName,event,Sdate,seenFlag) values ((select name from userdetails where username = ?),?,?,?,?,?,'N')";
+			Connection conn = new DatabaseConn().getDbconnection();
 			PreparedStatement insertStat = null;
 			try {
-			insertStat.setString(1, username);
-			insertStat.setString(2, sendTo);
-			insertStat.setString(3, shareWith);
-			insertStat.setString(4, event);
-			insertStat.setString(5, sdate);
+				insertStat = conn.prepareStatement(insertShare);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+			insertStat.setString(1, username);	
+			insertStat.setString(2, username);
+			insertStat.setString(3, sendTo);
+			insertStat.setString(4, shareWith);
+			insertStat.setString(5, event);
+			insertStat.setString(6, sdate);
 
 			
-			Connection conn = new DatabaseConn().getDbconnection();
 			
-				insertStat = conn.prepareStatement(insertShare);
+			
+				
 				int no_of_rows = insertStat.executeUpdate();		
 				
 				out.println("Y");
