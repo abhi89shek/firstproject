@@ -125,5 +125,12 @@
         android:layout_alignLeft="@+id/cartbutton"
         android:layout_below="@+id/cartbutton"
         android:text="View Cart" />
+    <TextView
+        android:id="@+id/scanbook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cartbutton"
+        android:layout_below="@+id/cartbutton"
+        android:text="View Cart" />
 
 </RelativeLayout>

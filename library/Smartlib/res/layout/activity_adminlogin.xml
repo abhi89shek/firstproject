@@ -82,5 +82,22 @@
         android:layout_alignParentTop="true"
         android:text="Log Off"
         android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/scanresult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tva2"
+        android:layout_toLeftOf="@+id/button1"
+        android:text="" />
+
+    <Button
+        android:id="@+id/scanbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/butta1"
+        android:layout_marginLeft="22dp"
+        android:layout_toRightOf="@+id/tva3"
+        android:text="scan a book" />
       
 </RelativeLayout>

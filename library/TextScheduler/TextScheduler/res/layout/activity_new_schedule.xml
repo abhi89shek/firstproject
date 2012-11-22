@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clipChildren="true"
+    android:padding="2dp"
+    tools:ignore="HardcodedText" 
+    android:background="@drawable/run2"  >
+    
+    <Button
+        android:id="@+id/buttonCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonPickTime"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="14dp"
+        android:text="Cancel" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonCancel"
+        android:layout_alignBottom="@+id/buttonCancel"
+        android:layout_alignRight="@+id/buttonSave"
+        android:text="Save" />
+
+    <EditText
+        android:id="@+id/composeMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonCancel"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="15dp"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/buttonPickContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/spinnerOccasion"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"
+        android:text="Select a Contact" />
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonPickContact"
+        android:layout_alignParentTop="true"
+        android:text="Create a New Event" />
+
+    <TextView
+        android:id="@+id/tvSelectedContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonPickContact"
+        android:layout_alignRight="@+id/buttonPickDate"
+        android:layout_below="@+id/buttonPickContact"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="14dp"
+        android:text="" />
+
+    <Spinner
+        android:id="@+id/spinnerOccasion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonPickDate"
+        android:layout_below="@+id/tvSelectedContact"
+        android:layout_marginTop="16dp"
+        android:entries="@array/occasion_arrays"        
+        android:prompt="@string/occasion_prompt" />
+
+    <Button
+        android:id="@+id/buttonPickDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/composeMessage"
+        android:layout_below="@+id/spinnerOccasion"
+        android:text="Select Date" />
+
+    <Button
+        android:id="@+id/buttonPickTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonPickDate"
+        android:layout_alignBottom="@+id/buttonPickDate"
+        android:layout_alignParentRight="true"
+        android:text="Select Time" />
+
+    <TextView
+        android:id="@+id/tvSelectedDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvSelectedContact"
+        android:layout_below="@+id/buttonPickDate"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tvSelectedTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvSelectedDate"
+        android:layout_alignBottom="@+id/tvSelectedDate"
+        android:layout_alignRight="@+id/buttonCancel"
+        android:text="" />
+
+</RelativeLayout>

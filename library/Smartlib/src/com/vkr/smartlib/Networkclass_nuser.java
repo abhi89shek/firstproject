@@ -52,7 +52,7 @@ public class Networkclass_nuser extends  AsyncTask<String[], Void, StringBuffer 
 	    	try {
 		        HttpClient httpClient = new DefaultHttpClient();
 		        System.out.println("button3");
-		        HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/webapp/Controllerservlet"); //the webserver address goes in here
+		        HttpPost httpPost = new HttpPost("http://192.168.50.1:8080/webapp/Controllerservlet"); //the webserver address goes in here
 		        System.out.println("button4");//the webserver address goes in here
 		        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 		        System.out.println("button5");

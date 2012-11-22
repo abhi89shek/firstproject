@@ -59,7 +59,7 @@ public class SearchBooktask extends  AsyncTask<String[], Void, String >{
     	try {
 	        HttpClient httpClient = new DefaultHttpClient();
 	        //URL to access the server
-	        HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/webapp/Controllerservlet");
+	        HttpPost httpPost = new HttpPost("http://192.168.50.1:8080/webapp/Controllerservlet");
 	        //the webserver address goes in here
 	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 	        //execute a http call to the server
