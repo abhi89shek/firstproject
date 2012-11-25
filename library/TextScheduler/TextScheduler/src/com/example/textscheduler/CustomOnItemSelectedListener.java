@@ -1,3 +1,8 @@
+/*
+ * The following method implements the dropdown to select the                                                                                                                * occassion.in the dropdown we have Birthday, Anniversary and 
+* Meeting being popped up.
+*/
+
 package com.example.textscheduler;
 
 import android.view.View;
