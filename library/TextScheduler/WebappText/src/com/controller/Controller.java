@@ -205,13 +205,15 @@ public class Controller extends HttpServlet {
 		}
 		if(activityNo == 4)
 		{
+			int seenFlag = 0;
 			String sender = null;
+			String senderId = null;
 			String event = null;
 			String sendTo = null;
 			String eventDate = null;
 			String username = request.getParameter("userName");
 			ResultSet notiResults = null;
-			String notificationResult = "select username,event,sendToName,Sdate from textuser where shareWithName = ? and seenFlag = 'N'";
+			String notificationResult = "select username,senderName,event,sendToName,Sdate from textuser where shareWithName = ? and seenFlag = 'N'";
 			PreparedStatement ps4 = null;
 			PreparedStatement updateStat = null;
 			Connection conn = new DatabaseConn().getDbconnection();
@@ -221,22 +223,34 @@ public class Controller extends HttpServlet {
 				 notiResults = ps4.executeQuery();
 				while(notiResults.next())
 				{
+					
 					sender = notiResults.getString(1);
-					event =  notiResults.getString(2);
-					sendTo = notiResults.getString(3);
-					eventDate = notiResults.getDate(4).toString();
-					notiStr = notiStr + sender+"wants you to attend an event: "+event+" of "+sendTo+" on "+eventDate + ":";
+					senderId = notiResults.getString(2);
+					event =  notiResults.getString(3);
+					sendTo = notiResults.getString(4);
+					eventDate = notiResults.getDate(5).toString();
+					notiStr = notiStr + sender+" wants you to attend an event: "+event+" of "+sendTo+" on "+eventDate + ":";
 					String updateFlag = "update textuser set seenFlag = 'Y' where seenFlag = 'N' and event = ? and senderName = ? and Sdate =?";
 					updateStat = conn.prepareStatement(updateFlag);
 					updateStat.setString(1, event);
-					updateStat.setString(2, sender);
+					updateStat.setString(2, senderId);
 					updateStat.setString(3, eventDate);
 					
 					int no_of_rows = updateStat.executeUpdate();
-				}				
+					if(no_of_rows >0)
+					{
+						seenFlag = 1;
+					}
+				}
+				if(seenFlag == 1)
+				{
 				String finalNotiStr = notiStr.substring(0, (notiStr.length()-1));				
-				
 				out.println(finalNotiStr);
+				}
+				else
+				{
+					out.println("No new notifications");
+				}
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

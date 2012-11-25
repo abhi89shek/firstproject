@@ -55,38 +55,14 @@ public class SelectionActivity extends Activity implements OnClickListener{
 	    	    {
 	    	      public void onClick(DialogInterface dialog, int which) 
 	    	      {
-	    	    	  activityNo = null;	    	    	  
-	    	    	  activityNo = "4";
-	    	    	  Notificationtask viewNotificationtask = new Notificationtask(SelectionActivity.this);
-	    	    	  params2[0] = activityNo;
-	    	          params2[1] = userid;
-	    	          viewNotificationtask.execute(params2);	    	          
-	    	          StringBuffer viewNotificationResult = null;
-						try {
-							viewNotificationResult = viewNotificationtask.get();
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (ExecutionException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-	    	          	String viewNotifications = viewNotificationResult.toString();
-	    	          	System.out.println(viewNotifications);
-	    	          	Intent notificationIntent = new Intent();
-	    	          	notificationIntent.setClass(getBaseContext(),Notificationscreen.class);
-	    	          	Bundle newNotifications = new Bundle();
-	    	          	newNotifications.putString("notifications",viewNotifications);
-	    	          	notificationIntent.putExtras(newNotifications);
-	    	          	startActivityForResult(notificationIntent,0);
-    	    	   
+	    	    	  viewNotifications();     	    	   
     	    	  } 
 	    	    });
         		notificationsDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() 
     	        {
     	          public void onClick(DialogInterface dialog, int which) 
     	          {
-                    	            
+    	        	         
     	          }  
     	        });
     	     
@@ -103,6 +79,34 @@ public class SelectionActivity extends Activity implements OnClickListener{
         
         buttonNewSchedule.setOnClickListener(this);
         buttonViewNotifications.setOnClickListener(this);
+    }
+    
+    public void viewNotifications()
+    {
+    	activityNo = null;	    	    	  
+  	  activityNo = "4";
+  	  Notificationtask viewNotificationtask = new Notificationtask(SelectionActivity.this);
+  	  params2[0] = activityNo;
+        params2[1] = userid;
+        viewNotificationtask.execute(params2);	    	          
+        StringBuffer viewNotificationResult = null;
+			try {
+				viewNotificationResult = viewNotificationtask.get();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	String viewNotifications = viewNotificationResult.toString();
+        	System.out.println(viewNotifications);
+        	Intent notificationIntent = new Intent();
+        	notificationIntent.setClass(getBaseContext(),Notificationscreen.class);
+        	Bundle newNotifications = new Bundle();
+        	newNotifications.putString("notifications",viewNotifications);
+        	notificationIntent.putExtras(newNotifications);
+        	startActivityForResult(notificationIntent,0);
     }
 
     @Override
@@ -124,6 +128,10 @@ public class SelectionActivity extends Activity implements OnClickListener{
 					finish();   
 					
     			case R.id.button_view_notifications:
+    				
+    				viewNotifications();
+    				
+    				
     				
     	}
     }
