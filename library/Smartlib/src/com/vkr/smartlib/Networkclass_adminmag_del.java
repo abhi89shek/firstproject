@@ -43,7 +43,7 @@ public class Networkclass_adminmag_del extends AsyncTask<String[], Void, StringB
     		System.out.println("INSIDE TEST TRY");
     		
     		  HttpClient httpClient = new DefaultHttpClient();
-    		  HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/webapp/Controllerservlet");//the webserver address goes in here	        
+    		  HttpPost httpPost = new HttpPost("http://192.168.50.1:8080/webapp/Controllerservlet");//the webserver address goes in here	        
   	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));	        
   	        HttpResponse response = httpClient.execute(httpPost);	 //connect to the server via httppost       
   	        HttpEntity entity = response.getEntity();	//get the response from the server        

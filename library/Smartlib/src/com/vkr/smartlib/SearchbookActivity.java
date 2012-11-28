@@ -81,7 +81,7 @@ public class SearchbookActivity extends Activity {
 				        alertbox.show();
 						
 					}
-					//if books are found matching the name ,a new page is played with natching book names
+					//if books are found matching the name ,a new page is played with matching book names
 					Intent intent = new Intent(v1.getContext(),SearchresultActivity.class);
 					Bundle b = new Bundle();
 					b.putString("books", books);

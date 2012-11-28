@@ -171,7 +171,7 @@ public class Controllerservlet extends HttpServlet {
 			String query = "insert into user(Fname,username,password,emailid,Maddress,Pno) values (?,?,?,?,?,?) ";
 			Connection conn = new DBConnection().getDbconnection();
 			try {
-				PreparedStatement ps1 = conn.prepareStatement(query);
+				PreparedStatement ps1 = conn.prepareStatement(exsQuery);
 				PreparedStatement ps = conn.prepareStatement(query);
 				ps1.setString(1, username);
 				ps.setString(1,fname);
@@ -1062,6 +1062,61 @@ public class Controllerservlet extends HttpServlet {
 				
 			
 				}
+			if (ano == 17) //search based on books ISBN
+			{
+				list = new ArrayList<String>();
+				String barcode = request.getParameter("barcode");
+				String searchquery = "select Bname,BISBN from book where BARCODE = ?";
+				Connection conn = new DBConnection().getDbconnection();
+				try {
+					PreparedStatement ps = conn.prepareStatement(searchquery);
+					//ps.setString(1, uid);
+					ps.setString(1,barcode);
+					rs = ps.executeQuery();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					if(rs!= null)
+					{
+						while(rs.next()) //add the books into the arraylist
+						{
+							Integer isbn = rs.getInt(2);
+							String bisbn = isbn.toString();
+							str = str + rs.getString(1) + "("+ bisbn + ")" + ":";
+						}
+						finalstr = str.substring(0,(str.length()-1) );
+						System.out.println(finalstr);
+						out.println(finalstr);
+					}
+					else
+					{
+						out.println("N");
+					}
+				}catch
+					(Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				finally
+				{
+					try {
+						if(rs != null)
+						{
+						rs.close();	
+						}					
+					if(conn != null)
+					{
+						conn.close();
+					}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			}
 	
 
 }

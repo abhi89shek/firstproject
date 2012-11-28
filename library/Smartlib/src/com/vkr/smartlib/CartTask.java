@@ -56,7 +56,7 @@ public class CartTask  extends AsyncTask<String[], Void, String >  {
 		 {
 			 HttpClient httpClient = new DefaultHttpClient();
 			 
-			 HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/webapp/Controllerservlet");
+			 HttpPost httpPost = new HttpPost("http://192.168.50.1:8080/webapp/Controllerservlet");
 			 
 			 httpPost.setEntity(new UrlEncodedFormEntity(alist));
 		        //execute a http call to the server
