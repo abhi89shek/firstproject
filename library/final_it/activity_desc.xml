@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000" >
+
+    <ImageView
+        android:id="@+id/imde1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="TODO"
+        tools:ignore="ContentDescription,HardcodedText" />
+
+    <RatingBar
+        android:id="@+id/rbde"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="65dp"
+        android:clickable="true"
+        android:max="5"
+        android:numStars="5" />
+
+    <Button
+        android:id="@+id/btnde1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="19dp"
+        android:layout_marginLeft="25dp"
+        android:background="#87CEFA"
+        android:text="Borrow"
+        android:textColor="#FFFFFF"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnde2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnde1"
+        android:layout_alignBottom="@+id/btnde1"
+        android:layout_alignRight="@+id/rbde"
+        android:background="#87CEFA"
+        android:text="Add To Cart"
+        android:textColor="#FFFFFF"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/rbtv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnde2"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/rbde"
+        android:layout_toRightOf="@+id/rbde"
+        android:inputType="numberDecimal"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#FFD700"
+        android:textSize="15dp"
+        tools:ignore="TextViewEdits" />
+
+    <TextView
+        android:id="@+id/tvde1"
+        android:layout_width="240dp"
+        android:layout_height="210dp"
+        android:layout_above="@+id/rbde"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imde1"
+        android:text="Bookname: "
+        android:textColor="#ffffff"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:text="Bookkisbn: "
+        android:textColor="#ffffff"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvbndesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView1"
+        android:text=""
+        android:textAllCaps="true"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/tvisbndesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:text=""
+        android:textAllCaps="true"
+        android:textColor="#ffffff" >
+    </TextView>
+
+</RelativeLayout>
